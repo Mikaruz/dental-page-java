@@ -1,7 +1,16 @@
 package model;
 
-public class User {
+import java.io.Serializable;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+public class User implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+    
     private String username;
     private String password;
 

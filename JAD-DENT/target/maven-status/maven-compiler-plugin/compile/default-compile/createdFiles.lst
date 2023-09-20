@@ -1,0 +1,11 @@
+model\Dentist_.class
+model\Schedule.class
+model\Dentist.class
+model\Appointment.class
+model\Parent.class
+model\Person_.class
+model\Patient_.class
+model\Parent_.class
+model\Person.class
+model\User.class
+model\Patient.class

@@ -1,21 +1,43 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-public class Dentist extends Person {
+@Entity
+public class Dentist implements Serializable {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int dentistId;
+    
+    private String name;
+    private String lastName;
+    
     private String specialty;
+    
+    @OneToMany (mappedBy = "dentist")
     private List<Appointment> appointments;
+    
+    @OneToOne
     private User user;
+    
+    @OneToOne
     private Schedule schedule; 
 
     public Dentist() {
     }
 
-    public Dentist(int dentistId, String specialty, List<Appointment> appointments, User user, Schedule schedule, String dni, String name, String lastName, String phoneNumber, String address, Date birthDate) {
-        super(dni, name, lastName, phoneNumber, address, birthDate);
+    public Dentist(int dentistId, String nombre, String apellido, String specialty, List<Appointment> appointments, User user, Schedule schedule) {
         this.dentistId = dentistId;
+        this.name = nombre;
+        this.lastName = apellido;
         this.specialty = specialty;
         this.appointments = appointments;
         this.user = user;
@@ -28,6 +50,22 @@ public class Dentist extends Person {
 
     public void setDentistId(int dentistId) {
         this.dentistId = dentistId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getSpecialty() {

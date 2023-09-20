@@ -1,13 +1,37 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Appointment {
+@Entity
+public class Appointment implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int appointmentId;
+    
+    @Temporal(TemporalType.DATE)
     private Date turnDate;
+    
     private String turnTime;
-    private String condition;
-
+    private String dentalIssue;
+    
+    @ManyToOne 
+    @JoinColumn(name = "dentist_id")
+    private Dentist dentist;
+    
+    @ManyToOne 
+    @JoinColumn(name = "patient_id")
+    private Patient patient;
+    
     public Appointment() {
     }
 
@@ -15,7 +39,7 @@ public class Appointment {
         this.appointmentId = appointmentId;
         this.turnDate = turnDate;
         this.turnTime = turnTime;
-        this.condition = condition;
+        this.dentalIssue = condition;
     }
 
     public int getAppointmentId() {
@@ -42,11 +66,11 @@ public class Appointment {
         this.turnTime = turnTime;
     }
 
-    public String getCondition() {
-        return condition;
+    public String getDentalIssue() {
+        return dentalIssue;
     }
 
-    public void setCondition(String condition) {
-        this.condition = condition;
+    public void setDentalIssue(String dentalIssue) {
+        this.dentalIssue = dentalIssue;
     }
 }

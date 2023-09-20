@@ -1,10 +1,32 @@
 package model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Patient extends Person {
+@Entity
+public class Patient implements Serializable {
+   
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int patientId;
+    
+    private String dni;
+    private String name;
+    private String lastName;
+    private String phoneNumber;
+    
+    @Temporal(TemporalType.DATE)
+    private Date birthDate;
+    
     private boolean brushesTeethRegularly;
     private boolean flossesTeeth;
     private boolean hasAllergies;
@@ -13,15 +35,23 @@ public class Patient extends Person {
     private String previousProcedures;
     private boolean takesMedications;
     private String medicationsList;
+    
+    @OneToOne
     private Parent hasParent;
+    
+    @OneToMany
     private List<Appointment> appointments;
 
     public Patient() {
     }
 
-    public Patient(int patientId, boolean brushesTeethRegularly, boolean flossesTeeth, boolean hasAllergies, String allergiesDescription, boolean hadDentalProcedures, String previousProcedures, boolean takesMedications, String medicationsList, Parent hasParent, List<Appointment> appointments, String dni, String name, String lastName, String phoneNumber, String address, Date birthDate) {
-        super(dni, name, lastName, phoneNumber, address, birthDate);
+    public Patient(int patientId, String dni, String name, String lastName, String phoneNumber, Date birthDate, boolean brushesTeethRegularly, boolean flossesTeeth, boolean hasAllergies, String allergiesDescription, boolean hadDentalProcedures, String previousProcedures, boolean takesMedications, String medicationsList, Parent hasParent, List<Appointment> appointments) {
         this.patientId = patientId;
+        this.dni = dni;
+        this.name = name;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.birthDate = birthDate;
         this.brushesTeethRegularly = brushesTeethRegularly;
         this.flossesTeeth = flossesTeeth;
         this.hasAllergies = hasAllergies;
@@ -40,6 +70,46 @@ public class Patient extends Person {
 
     public void setPatientId(int patientId) {
         this.patientId = patientId;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public boolean isBrushesTeethRegularly() {
@@ -121,4 +191,6 @@ public class Patient extends Person {
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
     }
+
+    
 }
