@@ -1,0 +1,17 @@
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\DentistJpaController.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\model\Dentist.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\ParentJpaController.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\PatientJpaController.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\ControllerPersistence.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\AppointmentJpaController.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\ScheduleJpaController.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\model\Parent.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\model\Appointment.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\model\User.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\exceptions\IllegalOrphanException.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\model\Schedule.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\exceptions\NonexistentEntityException.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\UserJpaController.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\exceptions\PreexistingEntityException.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\model\Patient.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\model\Controller.java
