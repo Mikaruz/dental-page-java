@@ -7,7 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class User implements Serializable{
+public class UserAdmin implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,14 +15,17 @@ public class User implements Serializable{
     
     private String username;
     private String password;
+    private String userRole;
 
-    public User() {
+    public UserAdmin() {
     }
 
-    public User(int userId, String username, String password) {
+    public UserAdmin(int userId, String username, String password, String userRole) {
         this.userId = userId;
         this.username = username;
         this.password = password;
+        this.userRole = userRole;
+
     }
 
     public int getUserId() {
@@ -48,4 +51,13 @@ public class User implements Serializable{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+    
 }

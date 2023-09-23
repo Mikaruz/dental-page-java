@@ -26,7 +26,7 @@ public class Dentist implements Serializable {
     private List<Appointment> appointments;
     
     @OneToOne
-    private User user;
+    private UserAdmin user;
     
     @OneToOne
     private Schedule schedule; 
@@ -34,7 +34,7 @@ public class Dentist implements Serializable {
     public Dentist() {
     }
 
-    public Dentist(int dentistId, String nombre, String apellido, String specialty, List<Appointment> appointments, User user, Schedule schedule) {
+    public Dentist(int dentistId, String nombre, String apellido, String specialty, List<Appointment> appointments, UserAdmin user, Schedule schedule) {
         this.dentistId = dentistId;
         this.name = nombre;
         this.lastName = apellido;
@@ -43,6 +43,7 @@ public class Dentist implements Serializable {
         this.user = user;
         this.schedule = schedule;
     }
+    
 
     public int getDentistId() {
         return dentistId;
@@ -84,11 +85,11 @@ public class Dentist implements Serializable {
         this.appointments = appointments;
     }
 
-    public User getUser() {
+    public UserAdmin getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserAdmin user) {
         this.user = user;
     }
 

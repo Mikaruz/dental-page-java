@@ -7,7 +7,7 @@
     <class>model.Parent</class>
     <class>model.Patient</class>
     <class>model.Schedule</class>
-    <class>model.User</class>
+    <class>model.UserAdmin</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jad_dent?serverTimezone=UTC"/>

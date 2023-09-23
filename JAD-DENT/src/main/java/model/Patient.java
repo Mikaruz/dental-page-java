@@ -39,7 +39,7 @@ public class Patient implements Serializable {
     @OneToOne
     private Parent hasParent;
     
-    @OneToMany
+    @OneToMany (mappedBy = "patient")
     private List<Appointment> appointments;
 
     public Patient() {
