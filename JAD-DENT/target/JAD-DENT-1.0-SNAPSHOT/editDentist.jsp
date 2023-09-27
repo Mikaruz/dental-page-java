@@ -1,3 +1,4 @@
+<%@page import="model.Dentist"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> <%String currentPage =
 "dentist";%>
 <!DOCTYPE html>
@@ -18,31 +19,32 @@
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Agregar dentista
+              Editar dentista
             </h2>
-
+            <%Dentist dentist = (Dentist) request.getSession().getAttribute("editDentist");%>
             <!-- General elements -->
-            <form class="dentist" action="CreateDentistServlet" method="POST">
+            <form class="dentist" action="EditDentistServlet" method="POST">
               <div
                 class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
               >
                 <label class="block text-sm">
                   <span class="text-gray-700 dark:text-gray-400">Nombre</span>
                   <input
+                    value="<%=dentist.getName()%>"
                     id="name"
                     name="name"
                     type="text"
                     class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                   />
                 </label>
-               
-                
+
                 <div class="mt-4 text-sm">
                   <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400"
                       >Apellido</span
                     >
                     <input
+                      value="<%=dentist.getLastName()%>"
                       id="lastname"
                       name="lastname"
                       type="text"
@@ -57,6 +59,8 @@
                       >Correo electrónico</span
                     >
                     <input
+                      readonly
+                      value="<%=dentist.getUser().getUsername()%>"
                       id="email"
                       name="email"
                       type="email"
@@ -71,6 +75,8 @@
                       >Contraseña</span
                     >
                     <input
+                      readonly
+                      value="<%=dentist.getUser().getPassword()%>"
                       id="password"
                       name="password"
                       type="password"
@@ -94,43 +100,13 @@
                     <option value="four">Especialidad 4</option>
                   </select>
                 </label>
-                <div class="mt-4 text-sm">
-                  <div class="flex space-x-4">
-                    <div class="flex-1">
-                      <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400"
-                          >Entrada</span
-                        >
-                        <input
-                          id="begintime"
-                          name="begintime"
-                          type="time"
-                          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        />
-                      </label>
-                    </div>
-                    <div class="flex-1">
-                      <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400"
-                          >Salida</span
-                        >
-                        <input
-                          id="endtime"
-                          name="endtime"
-                          type="time"
-                          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        />
-                      </label>
-                    </div>
-                  </div>
-                </div>
                 <br />
                 <div class="mt-4 text-sm flex justify-end">
                   <button
                     type="submit"
                     class="px-5 py-3 font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple"
                   >
-                    Agregar
+                    Guardar
                   </button>
                 </div>
               </div>

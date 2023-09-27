@@ -21,12 +21,12 @@
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Dentistas
+              Citas
             </h2>
             <!-- CTA -->
             <a
               class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="addDentist.jsp"
+              href="addAppointment.jsp"
             >
               <div class="flex items-center">
                 <svg
@@ -44,12 +44,16 @@
                   <polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
                   <line x1="3" y1="22" x2="21" y2="22"></line>
                 </svg>
-                <span>Agregar dentistas</span>
+                <span>Agendar cita</span>
               </div>
             </a>
 
             <!-- With actions -->
-
+            <h4
+              class="mb-4 text-lg font-semibold text-gray-600 dark:text-gray-300"
+            >
+              Citas agendadas
+            </h4>
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
@@ -58,9 +62,10 @@
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
                       <th class="px-4 py-3">Dentista</th>
-                      <th class="px-4 py-3">Especialidad</th>
-                      <th class="px-4 py-3">Disponibilidad</th>
-                      <th class="px-4 py-3">Citas agendadas</th>
+                      <th class="px-4 py-3">Paciente</th>
+                      <th class="px-4 py-3">Dia</th>
+                      <th class="px-4 py-3">Hora</th>
+                     
                       <th class="px-4 py-3">Acciones</th>
                     </tr>
                   </thead>
@@ -92,7 +97,28 @@
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm"><%=dentist.getSpecialty()%></td>
+                      <td class="px-4 py-3">
+                        <div class="flex items-center text-sm">
+                          <!-- Avatar with inset shadow -->
+                          <div
+                            class="relative hidden w-8 h-8 mr-3 rounded-full md:block"
+                          >
+                            <img
+                              class="object-cover w-full h-full rounded-full"
+                              src="https://picsum.photos/id/<%=dentist.getDentistId() + 9%>/200/300"
+                              alt=""
+                              loading="lazy"
+                            />
+                            <div
+                              class="absolute inset-0 rounded-full shadow-inner"
+                              aria-hidden="true"
+                            ></div>
+                          </div>
+                          <div>
+                            <p class="font-semibold"><%=dentist.getName() + " " + dentist.getLastName()%></p>
+                          </div>
+                        </div>
+                      </td>
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"

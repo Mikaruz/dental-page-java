@@ -21,12 +21,12 @@
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Dentistas
+              Pacientes
             </h2>
             <!-- CTA -->
             <a
               class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="addDentist.jsp"
+              href="addPatient.jsp"
             >
               <div class="flex items-center">
                 <svg
@@ -44,7 +44,7 @@
                   <polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
                   <line x1="3" y1="22" x2="21" y2="22"></line>
                 </svg>
-                <span>Agregar dentistas</span>
+                <span>Agregar paciente</span>
               </div>
             </a>
 
@@ -57,10 +57,10 @@
                     <tr
                       class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
                     >
-                      <th class="px-4 py-3">Dentista</th>
-                      <th class="px-4 py-3">Especialidad</th>
-                      <th class="px-4 py-3">Disponibilidad</th>
-                      <th class="px-4 py-3">Citas agendadas</th>
+                      <th class="px-4 py-3">Paciente</th>
+                      
+                      <th class="px-4 py-3">Cita</th>
+                      
                       <th class="px-4 py-3">Acciones</th>
                     </tr>
                   </thead>
@@ -89,10 +89,12 @@
                           </div>
                           <div>
                             <p class="font-semibold"><%=dentist.getName() + " " + dentist.getLastName()%></p>
+                            <p class="text-xs text-gray-600 dark:text-gray-400">
+                              DNI
                           </div>
                         </div>
                       </td>
-                      <td class="px-4 py-3 text-sm"><%=dentist.getSpecialty()%></td>
+                      
                       <td class="px-4 py-3 text-xs">
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
@@ -100,9 +102,19 @@
                           Disponible
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">0</td>
+                     
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
+                          <form name="edit" action="EditDentistServlet" method="GET">
+                            <button
+                              class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                              aria-label="Edit"
+                            >
+                              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                            </button>
+                            <input type="hidden" name="dentistId" value="<%=dentist.getDentistId()%>">
+                            <input type="hidden" name="userId" value="<%=dentist.getUser().getUserId()%>">
+                          </form>
                           <form name="edit" action="EditDentistServlet" method="GET">
                             <button
                               class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"

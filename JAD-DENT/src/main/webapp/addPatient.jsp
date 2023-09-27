@@ -18,7 +18,7 @@
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Agregar dentista
+              Agregar paciente
             </h2>
 
             <!-- General elements -->
@@ -50,7 +50,32 @@
                     />
                   </label>
                 </div>
-
+                <div class="mt-4 text-sm">
+                  <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400"
+                      >DNI</span
+                    >
+                    <input
+                      id="lastname"
+                      name="lastname"
+                      type="text"
+                      class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    />
+                  </label>
+                </div>
+                <div class="mt-4 text-sm">
+                  <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400"
+                      >Teléfono</span
+                    >
+                    <input
+                      id="lastname"
+                      name="lastname"
+                      type="text"
+                      class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    />
+                  </label>
+                </div>
                 <div class="mt-4 text-sm">
                   <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400"
@@ -79,51 +104,8 @@
                   </label>
                 </div>
 
-                <label class="block mt-4 text-sm">
-                  <span class="text-gray-700 dark:text-gray-400">
-                    Especialidad
-                  </span>
-                  <select
-                    id="specialty"
-                    name="specialty"
-                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                  >
-                    <option value="one">Especialidad 1</option>
-                    <option value="two">Especialidad 2</option>
-                    <option value="three">Especialidad 3</option>
-                    <option value="four">Especialidad 4</option>
-                  </select>
-                </label>
-                <div class="mt-4 text-sm">
-                  <div class="flex space-x-4">
-                    <div class="flex-1">
-                      <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400"
-                          >Entrada</span
-                        >
-                        <input
-                          id="begintime"
-                          name="begintime"
-                          type="time"
-                          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        />
-                      </label>
-                    </div>
-                    <div class="flex-1">
-                      <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400"
-                          >Salida</span
-                        >
-                        <input
-                          id="endtime"
-                          name="endtime"
-                          type="time"
-                          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        />
-                      </label>
-                    </div>
-                  </div>
-                </div>
+                
+                
                 <br />
                 <div class="mt-4 text-sm flex justify-end">
                   <button

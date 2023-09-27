@@ -5,6 +5,7 @@ model\Dentist.class
 persistence\exceptions\IllegalOrphanException.class
 persistence\ControllerPersistence.class
 model\Patient.class
+servlets\DeleteDentistServlet.class
 persistence\UserAdminJpaController.class
 persistence\AppointmentJpaController.class
 persistence\exceptions\PreexistingEntityException.class
@@ -16,12 +17,14 @@ model\Dentist_.class
 model\UserAdmin.class
 persistence\exceptions\NonexistentEntityException.class
 persistence\ScheduleJpaController.class
+servlets\LoginServlet.class
 model\Parent.class
 model\Appointment_.class
 persistence\DentistJpaController.class
 model\exceptions\NonexistentEntityException.class
 persistence\ParentJpaController.class
 model\Schedule_.class
+servlets\EditDentistServlet.class
 model\Parent_.class
 model\Controller.class
 model\exceptions\IllegalOrphanException.class
