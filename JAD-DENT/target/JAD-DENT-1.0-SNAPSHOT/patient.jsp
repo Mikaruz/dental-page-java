@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
-<%@page import="model.Dentist"%>
+<%@page import="model.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> <%String currentPage =
 "dentist";%>
 <!DOCTYPE html>
@@ -64,11 +64,11 @@
                       <th class="px-4 py-3">Acciones</th>
                     </tr>
                   </thead>
-                  <%List<Dentist> dentistList = (List) request.getSession().getAttribute("dentistList");%>
+                  <%List<Patient> patientList = (List) request.getSession().getAttribute("patientList");%>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
-                    <%for(Dentist dentist : dentistList){ %>
+                    <%for(Patient patient : patientList){ %>
                     <tr class="text -gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -78,7 +78,7 @@
                           >
                             <img
                               class="object-cover w-full h-full rounded-full"
-                              src="https://picsum.photos/id/<%=dentist.getDentistId() + 9%>/200/300"
+                              src="https://picsum.photos/id/<%=patient.getUser().getUserId() + 9%>/200/300"
                               alt=""
                               loading="lazy"
                             />
@@ -88,9 +88,9 @@
                             ></div>
                           </div>
                           <div>
-                            <p class="font-semibold"><%=dentist.getName() + " " + dentist.getLastName()%></p>
+                            <p class="font-semibold"><%=patient.getName() + " " + patient.getLastName()%></p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              DNI
+                              <%=patient.getDni()%>
                           </div>
                         </div>
                       </td>
@@ -105,17 +105,17 @@
                      
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
-                          <form name="edit" action="EditDentistServlet" method="GET">
+                          <form name="edit" action="CreateAppointmentPatientServlet" method="GET">
                             <button
                               class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                               aria-label="Edit"
                             >
                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                             </button>
-                            <input type="hidden" name="dentistId" value="<%=dentist.getDentistId()%>">
-                            <input type="hidden" name="userId" value="<%=dentist.getUser().getUserId()%>">
+                            <input type="hidden" name="patientId" value="<%=patient.getPatientId()%>">
+                            <input type="hidden" name="userId" value="<%=patient.getUser().getUserId()%>">
                           </form>
-                          <form name="edit" action="EditDentistServlet" method="GET">
+                          <form name="edit" action="EditPatientServlet" method="GET">
                             <button
                               class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                               aria-label="Edit"
@@ -131,10 +131,10 @@
                                 ></path>
                               </svg>
                             </button>
-                            <input type="hidden" name="dentistId" value="<%=dentist.getDentistId()%>">
-                            <input type="hidden" name="userId" value="<%=dentist.getUser().getUserId()%>">
+                            <input type="hidden" name="patientid" value="<%=patient.getPatientId()%>">
+                            <input type="hidden" name="userid" value="<%=patient.getUser().getUserId()%>">
                           </form>
-                          <form name="delete" action="DeleteDentistServlet" method="POST">
+                          <form name="delete" action="DeletePatientServlet" method="POST">
                             <button
                               class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                               aria-label="Delete"
@@ -152,8 +152,8 @@
                                 ></path>
                               </svg>
                             </button>
-                            <input type="hidden" name="dentistId" value="<%=dentist.getDentistId()%>">
-                            <input type="hidden" name="userId" value="<%=dentist.getUser().getUserId()%>">
+                            <input type="hidden" name="patientid" value="<%=patient.getPatientId()%>">
+                            <input type="hidden" name="userid" value="<%=patient.getUser().getUserId()%>">
                           </form>
                         </div>
                       </td>

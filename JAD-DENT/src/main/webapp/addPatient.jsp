@@ -22,7 +22,7 @@
             </h2>
 
             <!-- General elements -->
-            <form class="dentist" action="CreateDentistServlet" method="POST">
+            <form class="dentist" action="CreatePatientServlet" method="POST">
               <div
                 class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
               >
@@ -56,8 +56,8 @@
                       >DNI</span
                     >
                     <input
-                      id="lastname"
-                      name="lastname"
+                      id="dni"
+                      name="dni"
                       type="text"
                       class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     />
@@ -69,8 +69,8 @@
                       >Teléfono</span
                     >
                     <input
-                      id="lastname"
-                      name="lastname"
+                      id="phonenumber"
+                      name="phonenumber"
                       type="text"
                       class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     />

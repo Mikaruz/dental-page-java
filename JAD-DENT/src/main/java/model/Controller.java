@@ -2,7 +2,9 @@ package model;
 
 import org.mindrot.jbcrypt.BCrypt;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import persistence.ControllerPersistence;
 import persistence.exceptions.NonexistentEntityException;
 
@@ -26,6 +28,60 @@ public class Controller {
         return schedule;
     }
     
+    public void createPatient(String name, String lastName, String email, String password, String dni, String phoneNumber){
+        String username = email;
+        String userRole = "patient";
+        
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        UserAdmin user = createUser(username, hashedPassword, userRole);
+        
+        Patient patient = new Patient();
+        patient.setName(name);
+        patient.setLastName(lastName);
+        patient.setDni(dni);
+        patient.setPhoneNumber(phoneNumber);
+        patient.setUser(user);
+        
+        controllerPersistence.createUser(user); 
+        controllerPersistence.createPatient(patient);
+    }
+    
+    public Patient createPatient2(String name, String lastName, String email, String password, String dni, String phoneNumber){
+        String username = email;
+        String userRole = "patient";
+        
+        String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        UserAdmin user = createUser(username, hashedPassword, userRole);
+        
+        Patient patient = new Patient();
+        patient.setName(name);
+        patient.setLastName(lastName);
+        patient.setDni(dni);
+        patient.setPhoneNumber(phoneNumber);
+        patient.setUser(user);
+        
+        controllerPersistence.createUser(user); 
+        controllerPersistence.createPatient(patient);
+        
+        return patient;
+    }
+    
+    public void createPendingAppointment(String name, String lastName, String dni, String phoneNumber, String email, Date date, String speciality, String reason){
+        PendingAppointment pendingappointment = new PendingAppointment();
+        
+        pendingappointment.setName(name);
+        pendingappointment.setLastName(lastName);
+        pendingappointment.setDni(dni);
+        pendingappointment.setPhoneNumber(phoneNumber);
+        pendingappointment.setEmail(email);
+        pendingappointment.setDate(date);
+        pendingappointment.setSpeciality(speciality);
+        pendingappointment.setReason(reason);
+        
+        controllerPersistence.createPendingAppointment(pendingappointment);
+        
+    }
+    
     public void createDentist(String name, String lastName, String specialty, String email, String password, String beginTime, String endTime){
         String username = email;
         String userRole = "dentist";
@@ -44,6 +100,7 @@ public class Controller {
         dentist.setUser(user);
         dentist.setSchedule(schedule);
         
+        
         controllerPersistence.createUser(user);
         controllerPersistence.createSchedule(schedule);
         controllerPersistence.createDentist(dentist);
@@ -54,6 +111,12 @@ public class Controller {
         controllerPersistence.getDentistList();
         
         return controllerPersistence.getDentistList();
+    }
+    
+    public List<Patient> getPatientList(){
+        controllerPersistence.getPatientList();
+        
+        return controllerPersistence.getPatientList();
     }
 
     public void deleteDentist(int dentistId, int userId) throws NonexistentEntityException {
@@ -69,12 +132,57 @@ public class Controller {
         return controllerPersistence.getUser(userId);
     }
     
+    public PendingAppointment getPendingAppointment(int pendingAppointmentId){
+        return controllerPersistence.getPendingAppointment(pendingAppointmentId);
+    }
+    
     public void editDentist(Dentist dentist){
         controllerPersistence.editDentist(dentist);
     }
     
     public void editUser(UserAdmin user){
         controllerPersistence.editUser(user);
+    }
+    
+    public void editPatient(Patient patient){
+        controllerPersistence.editPatient(patient);
+    }
+
+    public Patient getPatient(int patientId) {
+        return controllerPersistence.getPatient(patientId);
+    }
+
+    public void createAppointment(Dentist dentist, Patient patient, Date turnDate, String turnTime, String dentalIssue) {
+        Appointment appointment = new Appointment();
+        
+        appointment.setDentist(dentist);
+        appointment.setPatient(patient);
+        appointment.setTurnDate(turnDate);
+        appointment.setTurnTime(turnTime);
+        appointment.setDentalIssue(dentalIssue);
+        
+        controllerPersistence.createAppointment(appointment);
+    }
+
+    public List<Appointment> getAppointmentList() {
+        controllerPersistence.getAppointmentList();
+        
+        return controllerPersistence.getAppointmentList();
+    }
+
+    public List<PendingAppointment> getPendingAppointmentList(){
+        controllerPersistence.getPendingAppointmentList();
+        
+        return controllerPersistence.getPendingAppointmentList();
+    }
+
+    public void deletePendingAppointment(int pendingAppointmentId) {
+        controllerPersistence.deletePendingAppointment(pendingAppointmentId);
+    }
+
+    public void deletePatient(int patientId, int userId) {
+        controllerPersistence.deletePatient(patientId);
+        controllerPersistence.deleteUser(userId);
     }
     
 }

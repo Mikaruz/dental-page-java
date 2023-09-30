@@ -73,4 +73,22 @@ public class Appointment implements Serializable{
     public void setDentalIssue(String dentalIssue) {
         this.dentalIssue = dentalIssue;
     }
+
+    public Dentist getDentist() {
+        return dentist;
+    }
+
+    public void setDentist(Dentist dentist) {
+        this.dentist = dentist;
+    }
+
+    public Patient getPatient() {
+        return patient;
+    }
+
+    public void setPatient(Patient patient) {
+        this.patient = patient;
+    }
+    
+    
 }

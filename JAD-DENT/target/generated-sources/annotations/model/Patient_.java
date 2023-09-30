@@ -7,8 +7,9 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import model.Appointment;
 import model.Parent;
+import model.UserAdmin;
 
-@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2023-09-26T22:02:11")
+@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2023-09-30T14:32:39")
 @StaticMetamodel(Patient.class)
 public class Patient_ { 
 
@@ -25,6 +26,7 @@ public class Patient_ {
     public static volatile SingularAttribute<Patient, Boolean> hadDentalProcedures;
     public static volatile SingularAttribute<Patient, String> name;
     public static volatile SingularAttribute<Patient, Boolean> brushesTeethRegularly;
+    public static volatile SingularAttribute<Patient, UserAdmin> user;
     public static volatile SingularAttribute<Patient, String> dni;
     public static volatile SingularAttribute<Patient, String> medicationsList;
     public static volatile SingularAttribute<Patient, Parent> hasParent;

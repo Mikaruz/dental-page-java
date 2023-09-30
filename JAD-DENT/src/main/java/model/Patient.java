@@ -41,11 +41,14 @@ public class Patient implements Serializable {
     
     @OneToMany (mappedBy = "patient")
     private List<Appointment> appointments;
+    
+    @OneToOne
+    private UserAdmin user;
 
     public Patient() {
     }
 
-    public Patient(int patientId, String dni, String name, String lastName, String phoneNumber, Date birthDate, boolean brushesTeethRegularly, boolean flossesTeeth, boolean hasAllergies, String allergiesDescription, boolean hadDentalProcedures, String previousProcedures, boolean takesMedications, String medicationsList, Parent hasParent, List<Appointment> appointments) {
+    public Patient(int patientId, String dni, String name, String lastName, String phoneNumber, Date birthDate, boolean brushesTeethRegularly, boolean flossesTeeth, boolean hasAllergies, String allergiesDescription, boolean hadDentalProcedures, String previousProcedures, boolean takesMedications, String medicationsList, Parent hasParent, List<Appointment> appointments, UserAdmin user) {
         this.patientId = patientId;
         this.dni = dni;
         this.name = name;
@@ -62,7 +65,10 @@ public class Patient implements Serializable {
         this.medicationsList = medicationsList;
         this.hasParent = hasParent;
         this.appointments = appointments;
+        this.user = user;
     }
+
+    
 
     public int getPatientId() {
         return patientId;
@@ -190,6 +196,14 @@ public class Patient implements Serializable {
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public UserAdmin getUser() {
+        return user;
+    }
+
+    public void setUser(UserAdmin user) {
+        this.user = user;
     }
 
     

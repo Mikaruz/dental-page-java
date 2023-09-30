@@ -1,3 +1,7 @@
+<%@page import="model.Dentist"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
+<%@page import="model.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> <%String currentPage =
 "dentist";%>
 <!DOCTYPE html>
@@ -20,9 +24,9 @@
             >
               Agendar cita
             </h2>
-
+            <%Patient patient = (Patient) request.getSession().getAttribute("appointmentPatient");%>
             <!-- General elements -->
-            <form class="dentist" action="CreateDentistServlet" method="POST">
+            <form class="dentist" action="CreateAppointmentPatientServlet" method="POST">
               <div
                 class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"
               >
@@ -30,7 +34,7 @@
                 <span class="text-gray-700 dark:text-gray-400">Paciente</span>
                 <input
                   readonly
-                  value="aa"
+                  value="<%=patient.getName() + " " + patient.getLastName()%>"
                   id="name"
                   name="name"
                   type="text"
@@ -41,15 +45,16 @@
                   <span class="text-gray-700 dark:text-gray-400">
                     Dentista
                   </span>
+                  <%List<Dentist> dentistList = (List) request.getSession().getAttribute("dentistList");%>
                   <select
-                    id="specialty"
-                    name="specialty"
+                    id="dentistid"
+                    name="dentistid"
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                   >
-                    <option value="one">Especialidad 1</option>
-                    <option value="two">Especialidad 2</option>
-                    <option value="three">Especialidad 3</option>
-                    <option value="four">Especialidad 4</option>
+                    <%for(Dentist dentist : dentistList){ %>
+                    <option value="<%=dentist.getDentistId()%>"><%=dentist.getName() + " " + dentist.getLastName()%></option>
+                    <% } %>
+
                   </select>
                 </label>
                 <div class="mt-4 text-sm">
@@ -60,8 +65,8 @@
                           >Fecha</span
                         >
                         <input
-                          id="fecha"
-                          name="fecha"
+                          id="turndate"
+                          name="turndate"
                           type="date"
                           class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         />
@@ -73,8 +78,8 @@
                           >Hora</span
                         >
                         <input
-                          id="hora"
-                          name="hora"
+                          id="turntime"
+                          name="turntime"
                           type="time"
                           class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         />
@@ -83,22 +88,39 @@
                   </div>
                 </div>
 
+                <% String speciality = (String) session.getAttribute("speciality"); %>
+
                 <label class="block mt-4 text-sm">
                   <span class="text-gray-700 dark:text-gray-400">
                     Motivo
                   </span>
-                  <select
-                    id="specialty"
-                    name="specialty"
-                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                  >
-                    <option value="one">Especialidad 1</option>
-                    <option value="two">Especialidad 2</option>
-                    <option value="three">Especialidad 3</option>
-                    <option value="four">Especialidad 4</option>
-                  </select>
+
+                  <% if (speciality == null) { %>
+                    <select
+                      id="dentalissue"
+                      name="dentalissue"
+                      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    >
+                      <option value="one">Especialidad 1</option>
+                      <option value="two">Especialidad 2</option>
+                      <option value="three">Especialidad 3</option>
+                      <option value="four">Especialidad 4</option>
+                    </select>
+                  <% } else { %>
+                    <input
+                      readonly,
+                      type="text"
+                      id="dentalissue"
+                      name="dentalissue"
+                      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-input focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                      value="<%= speciality %>"
+                    >
+                  <% } %>
                 </label>
 
+                    
+                    
+                <input type="hidden" name="patientid" value="<%=patient.getPatientId()%>">
                 <br />
                 <div class="mt-4 text-sm flex justify-end">
                   <button
