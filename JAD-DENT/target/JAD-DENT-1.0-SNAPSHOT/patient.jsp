@@ -1,3 +1,4 @@
+<%@page import="model.Appointment"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Patient"%>
@@ -90,6 +91,7 @@
                     </tr>
                   </thead>
                   <%List<Patient> patientList = (List) request.getSession().getAttribute("patientList");%>
+                  <%List<Appointment> appointmentList = (List) request.getSession().getAttribute("appointmentList");%>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
@@ -120,14 +122,30 @@
                         </div>
                       </td>
                       
+                    
                       <td class="px-4 py-3 text-xs">
+                        <% boolean hasAppointment = false;
+                          for (Appointment appointment : appointmentList) {
+                            if (appointment.getPatient().getPatientId() == patient.getPatientId()) {
+                              hasAppointment = true;
+                              break;
+                            }
+                          }
+                          if (hasAppointment) {
+                        %>
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
-                          Disponible
+                          Cita programada
                         </span>
+                        <% } else { %>
+                          <span
+                          class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                        >
+                          Sin cita
+                        </span>
+                        <% } %>
                       </td>
-                     
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
                           <form name="edit" action="CreateAppointmentPatientServlet" method="GET">

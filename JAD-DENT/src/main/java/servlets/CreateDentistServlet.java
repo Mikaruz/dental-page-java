@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Appointment;
 import model.Controller;
 import model.Dentist;
 
@@ -29,12 +30,13 @@ public class CreateDentistServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Dentist> dentistList = new ArrayList<Dentist>();
-        
+        List<Appointment> appointmentList = new ArrayList<Appointment>();
         dentistList = controller.getDentistList();
+        appointmentList = controller.getAppointmentList();
         
         HttpSession mySession = request.getSession();
         mySession.setAttribute("dentistList", dentistList);
-        
+        mySession.setAttribute("appointmentList", appointmentList);
         response.sendRedirect("dentist.jsp");
     } 
 

@@ -1,3 +1,4 @@
+<%@page import="model.Appointment"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Dentist"%>
@@ -65,6 +66,7 @@
                     </tr>
                   </thead>
                   <%List<Dentist> dentistList = (List) request.getSession().getAttribute("dentistList");%>
+                  <%List<Appointment> appointmentList = (List) request.getSession().getAttribute("appointmentList");%>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
@@ -100,7 +102,16 @@
                           Disponible
                         </span>
                       </td>
-                      <td class="px-4 py-3 text-sm">0</td>
+                      <td class="px-4 py-3 text-sm">
+                        <% int appointmentCount = 0;
+                           for (Appointment appointment : appointmentList) {
+                             if (appointment.getDentist().getDentistId() == dentist.getDentistId()) {
+                               appointmentCount++;
+                             }
+                           }
+                           
+                        %>
+                     <%=appointmentCount%> </td>
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
                           <form name="edit" action="EditDentistServlet" method="GET">

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Appointment;
 import model.Controller;
 import model.Dentist;
 import model.Patient;
@@ -22,16 +23,32 @@ public class CreatePatientServlet extends HttpServlet {
             throws ServletException, IOException {
         
     }
+    
+    private boolean hasAppointments(Patient patient, List<Appointment> appointments) {
+    int patientId = patient.getPatientId(); // Reemplaza esto con la forma de obtener el ID del paciente.
+    
+    for (Appointment appointment : appointments) {
+        if (appointment.getPatient().getPatientId() == patientId) {
+            return true;
+        }
+    }
+    
+    return false;
+}
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Patient> patientList = new ArrayList<Patient>();
-        
+        List<Appointment> appointmentList = new ArrayList<Appointment>();
+                
         patientList = controller.getPatientList();
+        appointmentList = controller.getAppointmentList();
+        
         
         HttpSession mySession = request.getSession();
         mySession.setAttribute("patientList", patientList);
+        mySession.setAttribute("appointmentList", appointmentList);
         
         response.sendRedirect("patient.jsp");
     }
