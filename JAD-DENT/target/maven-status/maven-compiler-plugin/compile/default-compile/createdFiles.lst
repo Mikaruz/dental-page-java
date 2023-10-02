@@ -1,8 +1,10 @@
 persistence\PatientJpaController.class
+servlets\EditAppointmentServlet.class
 model\Schedule.class
 servlets\CreateAppointmentPatientServlet.class
 servlets\CreateDentistServlet.class
 model\Dentist.class
+servlets\DeletePendingAppointmentServlet.class
 servlets\exceptions\IllegalOrphanException.class
 persistence\exceptions\IllegalOrphanException.class
 persistence\ControllerPersistence.class
@@ -26,6 +28,7 @@ servlets\LoginServlet.class
 servlets\DeletePatientServlet.class
 model\Parent.class
 model\Appointment_.class
+servlets\DeleteAppointmentServlet.class
 persistence\PendingAppointmentJpaController.class
 servlets\ViewPendingAppointmentServlet.class
 persistence\DentistJpaController.class

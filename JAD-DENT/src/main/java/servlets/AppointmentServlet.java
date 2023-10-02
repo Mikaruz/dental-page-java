@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Appointment;
 import model.Controller;
+import model.Dentist;
+import model.PendingAppointment;
 
 @WebServlet(name = "AppointmentServlet", urlPatterns = {"/AppointmentServlet"})
 public class AppointmentServlet extends HttpServlet {
@@ -26,13 +28,19 @@ public class AppointmentServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        List<Appointment> appointmentList = new ArrayList<Appointment>();
+       List<PendingAppointment> pendingAppointmentList = new ArrayList<PendingAppointment>();
        
        appointmentList = controller.getAppointmentList();
+       pendingAppointmentList = controller.getPendingAppointmentList();
        
        HttpSession mySession = request.getSession();
+       mySession.setAttribute("pendingAppointmentList", pendingAppointmentList);
+       
+      
        mySession.setAttribute("appointmentList", appointmentList);
-        
-       response.sendRedirect("CreatePendingAppointmentServlet");
+       
+       
+       response.sendRedirect("appointments.jsp");
     }
 
     @Override

@@ -4,7 +4,7 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Appointment"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> <%String currentPage =
-"dentist";%>
+"appointment";%>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
   <%@include file="components/head.jsp"%>
@@ -25,30 +25,7 @@
             >
               Citas
             </h2>
-            <!-- CTA -->
-            <a
-              class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
-              href="addAppointment.jsp"
-            >
-              <div class="flex items-center">
-                <svg
-                  class="w-5 h-5 mr-2"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <polygon points="14 2 18 6 7 17 3 17 3 13 14 2"></polygon>
-                  <line x1="3" y1="22" x2="21" y2="22"></line>
-                </svg>
-                <span>Agendar cita</span>
-              </div>
-            </a>
+            
 
             <!-- With actions -->
             <h4
@@ -138,7 +115,9 @@
                       
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
-                          <form name="edit" action="EditDentistServlet" method="GET">
+                          <form name="edit" action="EditAppointmentServlet" method="GET">
+                            <input type="hidden" name="appointmentid" value="<%=appointment.getAppointmentId()%>">
+                             <input type="hidden" name="patientid" value="<%=appointment.getPatient().getPatientId()%>">
                             <button
                               class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                               aria-label="Edit"
@@ -156,7 +135,10 @@
                             </button>
                             
                           </form>
-                          <form name="delete" action="DeleteDentistServlet" method="POST">
+                          <form name="delete" action="DeleteAppointmentServlet" method="POST">
+                           
+                            <input type="hidden" name="appointmentid" value="<%=appointment.getAppointmentId()%>">
+                           
                             <button
                               class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                               aria-label="Delete"
@@ -183,102 +165,7 @@
                   </tbody>
                 </table>
               </div>
-              <div
-                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
-              >
-                <span class="flex items-center col-span-3">
-                  Showing 21-30 of 100
-                </span>
-                <span class="col-span-2"></span>
-                <!-- Pagination -->
-                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                  <nav aria-label="Table navigation">
-                    <ul class="inline-flex items-center">
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                          aria-label="Previous"
-                        >
-                          <svg
-                            class="w-4 h-4 fill-current"
-                            aria-hidden="true"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                              clip-rule="evenodd"
-                              fill-rule="evenodd"
-                            ></path>
-                          </svg>
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          1
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          2
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          3
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          4
-                        </button>
-                      </li>
-                      <li>
-                        <span class="px-3 py-1">...</span>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          8
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          9
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                          aria-label="Next"
-                        >
-                          <svg
-                            class="w-4 h-4 fill-current"
-                            aria-hidden="true"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                              clip-rule="evenodd"
-                              fill-rule="evenodd"
-                            ></path>
-                          </svg>
-                        </button>
-                      </li>
-                    </ul>
-                  </nav>
-                </span>
-              </div>
+            
             </div>
             <br>
             
@@ -365,7 +252,8 @@
                             </button>
                             <input type="hidden" name="pendingappointmentid" value="<%=pendingAppointment.getPendingAppointmentId()%>">
                           </form>
-                          <form name="delete" action="DeleteDentistServlet" method="POST">
+                          <form name="delete" action="DeletePendingAppointmentServlet" method="POST">
+                              <input type="hidden" name="pendingappointmentid" value="<%=pendingAppointment.getPendingAppointmentId()%>">
                             <button
                               class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
                               aria-label="Delete"
@@ -392,102 +280,7 @@
                   </tbody>
                 </table>
               </div>
-              <div
-                class="grid px-4 py-3 text-xs font-semibold tracking-wide text-gray-500 uppercase border-t dark:border-gray-700 bg-gray-50 sm:grid-cols-9 dark:text-gray-400 dark:bg-gray-800"
-              >
-                <span class="flex items-center col-span-3">
-                  Showing 21-30 of 100
-                </span>
-                <span class="col-span-2"></span>
-                <!-- Pagination -->
-                <span class="flex col-span-4 mt-2 sm:mt-auto sm:justify-end">
-                  <nav aria-label="Table navigation">
-                    <ul class="inline-flex items-center">
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
-                          aria-label="Previous"
-                        >
-                          <svg
-                            class="w-4 h-4 fill-current"
-                            aria-hidden="true"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                              clip-rule="evenodd"
-                              fill-rule="evenodd"
-                            ></path>
-                          </svg>
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          1
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          2
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 text-white transition-colors duration-150 bg-purple-600 border border-r-0 border-purple-600 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          3
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          4
-                        </button>
-                      </li>
-                      <li>
-                        <span class="px-3 py-1">...</span>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          8
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple"
-                        >
-                          9
-                        </button>
-                      </li>
-                      <li>
-                        <button
-                          class="px-3 py-1 rounded-md rounded-r-lg focus:outline-none focus:shadow-outline-purple"
-                          aria-label="Next"
-                        >
-                          <svg
-                            class="w-4 h-4 fill-current"
-                            aria-hidden="true"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                              clip-rule="evenodd"
-                              fill-rule="evenodd"
-                            ></path>
-                          </svg>
-                        </button>
-                      </li>
-                    </ul>
-                  </nav>
-                </span>
-              </div>
+              
             </div>
           </div>
         </main>

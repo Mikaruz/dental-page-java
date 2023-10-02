@@ -151,6 +151,10 @@ public class Controller {
     public Patient getPatient(int patientId) {
         return controllerPersistence.getPatient(patientId);
     }
+    
+    public Appointment getAppointment(int appointmentId){
+        return controllerPersistence.getAppointment(appointmentId);
+    }
 
     public void createAppointment(Dentist dentist, Patient patient, Date turnDate, String turnTime, String dentalIssue) {
         Appointment appointment = new Appointment();
@@ -183,6 +187,10 @@ public class Controller {
     public void deletePatient(int patientId, int userId) {
         controllerPersistence.deletePatient(patientId);
         controllerPersistence.deleteUser(userId);
+    }
+    
+    public void deleteAppointment(int appointmentId){
+        controllerPersistence.deleteAppointment(appointmentId);
     }
     
 }

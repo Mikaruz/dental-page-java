@@ -1,3 +1,4 @@
+<%@page import="model.Appointment"%>
 <%@page import="model.Dentist"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
@@ -22,9 +23,11 @@
             <h2
               class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
             >
-              Agendar cita
+              Editar cita
             </h2>
-            <%Patient patient = (Patient) request.getSession().getAttribute("appointmentPatient");%>
+            <%Patient patient = (Patient) request.getSession().getAttribute("editPatient");%>
+            <%Appointment appointment = (Appointment) request.getSession().getAttribute("editAppointment");%>
+            
             <!-- General elements -->
             <form class="dentist" action="CreateAppointmentPatientServlet" method="POST">
               <div

@@ -88,10 +88,10 @@
                     name="specialty"
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                   >
-                    <option value="one">Especialidad 1</option>
-                    <option value="two">Especialidad 2</option>
-                    <option value="three">Especialidad 3</option>
-                    <option value="four">Especialidad 4</option>
+                    <option value="Odontologia general">Odontología general</option>
+                    <option value="Odontopediatria">Odontopediatría</option>
+                    <option value="Ortodoncia">Ortodoncia</option>
+                    <option value="Cirugia maxilofacial y oral">Cirugía maxilofacial y oral</option>
                   </select>
                 </label>
                 <div class="mt-4 text-sm">
@@ -102,6 +102,7 @@
                           >Entrada</span
                         >
                         <input
+                          required
                           id="begintime"
                           name="begintime"
                           type="time"
@@ -115,6 +116,7 @@
                           >Salida</span
                         >
                         <input
+                          required
                           id="endtime"
                           name="endtime"
                           type="time"

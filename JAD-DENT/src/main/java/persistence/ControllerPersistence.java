@@ -71,6 +71,10 @@ public class ControllerPersistence {
         return userJpa.findUserAdmin(userId);
     }
     
+    public Appointment getAppointment(int appointmentId){
+        return appointmentJpa.findAppointment(appointmentId);
+    }
+    
     public PendingAppointment getPendingAppointment(int pendingAppointmentId){
         return pendingAppointmentJpa.findPendingAppointment(pendingAppointmentId);
     }
@@ -130,4 +134,12 @@ public class ControllerPersistence {
             Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public void deleteAppointment(int appointmentId){
+        try {
+            appointmentJpa.destroy(appointmentId);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+}

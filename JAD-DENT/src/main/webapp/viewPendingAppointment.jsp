@@ -1,7 +1,8 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.PendingAppointment"%> <%@page import="model.Dentist"%>
 <%@page import="java.util.List"%> <%@page import="java.util.List"%> <%@page
 import="model.Patient"%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%String currentPage = "dentist";%>
+<%String currentPage = "appointment";%>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
   <%@include file="components/head.jsp"%>
@@ -84,6 +85,7 @@ import="model.Patient"%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
                     />
                   </label>
                 </div>
+                
                 <div class="mt-4 text-sm">
                   <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Teléfono</span>
@@ -105,6 +107,21 @@ import="model.Patient"%> <%@page contentType="text/html" pageEncoding="UTF-8"%>
                       value="<%=pendingAppointment.getSpeciality()%>"
                       id="speciality"
                       name="speciality"
+                      type="text"
+                      class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    />
+                  </label>
+                </div>
+                <div class="mt-4 text-sm">
+                  <label class="block text-sm">
+                    <%SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  %>
+                    <% String date = dateFormat.format(pendingAppointment.getDate()); %>
+                    <span class="text-gray-700 dark:text-gray-400">Día disponible</span>
+                    <input
+                      readonly
+                      value="<%=date%>"
+                      id="email"
+                      name="email"
                       type="text"
                       class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                     />

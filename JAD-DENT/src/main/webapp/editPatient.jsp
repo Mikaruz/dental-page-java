@@ -1,6 +1,6 @@
 <%@page import="model.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> <%String currentPage =
-"dentist";%>
+"patient";%>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
   <%@include file="components/head.jsp"%>
