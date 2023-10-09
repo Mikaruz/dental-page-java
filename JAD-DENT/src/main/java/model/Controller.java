@@ -46,7 +46,7 @@ public class Controller {
         controllerPersistence.createPatient(patient);
     }
     
-    public Patient createPatient2(String name, String lastName, String email, String password, String dni, String phoneNumber){
+    public Patient createPendingPatient(String name, String lastName, String email, String password, String dni, String phoneNumber){
         String username = email;
         String userRole = "patient";
         
@@ -113,6 +113,10 @@ public class Controller {
         return controllerPersistence.getDentistList();
     }
     
+    public List<Administrator> getAdministratorList(){
+        return controllerPersistence.getAdministratorList();
+    }
+    
     public List<Patient> getPatientList(){
         controllerPersistence.getPatientList();
         
@@ -140,6 +144,10 @@ public class Controller {
         controllerPersistence.editDentist(dentist);
     }
     
+    public void editSchedule(Schedule schedule){
+        controllerPersistence.editSchedule(schedule);
+    }
+    
     public void editUser(UserAdmin user){
         controllerPersistence.editUser(user);
     }
@@ -150,6 +158,14 @@ public class Controller {
 
     public Patient getPatient(int patientId) {
         return controllerPersistence.getPatient(patientId);
+    }
+    
+    public Schedule getSchedule(int scheduleId){
+        return controllerPersistence.getSchedule(scheduleId);
+    }
+    
+    public Administrator getAdministrator(int administratorId){
+        return controllerPersistence.getAdministrator(administratorId);
     }
     
     public Appointment getAppointment(int appointmentId){

@@ -9,6 +9,7 @@
     <class>model.Schedule</class>
     <class>model.UserAdmin</class>
     <class>model.PendingAppointment</class>
+    <class>model.Administrator</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jad_dent?serverTimezone=UTC"/>

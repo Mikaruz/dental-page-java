@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Administrator;
 import model.Appointment;
 import model.Dentist;
 import model.Patient;
@@ -16,7 +17,7 @@ import persistence.exceptions.NonexistentEntityException;
 public class ControllerPersistence {
     AppointmentJpaController appointmentJpa = new AppointmentJpaController();
     PendingAppointmentJpaController pendingAppointmentJpa = new PendingAppointmentJpaController();
-
+    AdministratorJpaController administratorJpa = new AdministratorJpaController();
     DentistJpaController dentistJpa = new DentistJpaController();
 //    ParentJpaController parentJpa = new ParentJpaController();
     PatientJpaController patientJpa = new PatientJpaController();
@@ -75,6 +76,14 @@ public class ControllerPersistence {
         return appointmentJpa.findAppointment(appointmentId);
     }
     
+    public Administrator getAdministrator(int administratorId){
+        return administratorJpa.findAdministrator(administratorId);
+    }
+    
+    public Schedule getSchedule(int scheduleId){
+        return scheduleJpa.findSchedule(scheduleId);
+    }
+    
     public PendingAppointment getPendingAppointment(int pendingAppointmentId){
         return pendingAppointmentJpa.findPendingAppointment(pendingAppointmentId);
     }
@@ -103,12 +112,24 @@ public class ControllerPersistence {
         }
     }
 
+    public void editSchedule(Schedule schedule){
+        try {
+            scheduleJpa.edit(schedule);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void createAppointment(Appointment appointment) {
         appointmentJpa.create(appointment);
     }
 
     public List<Appointment> getAppointmentList() {
         return appointmentJpa.findAppointmentEntities();
+    }
+    
+    public List<Administrator> getAdministratorList(){
+        return administratorJpa.findAdministratorEntities();
     }
 
     public List<PendingAppointment> getPendingAppointmentList(){

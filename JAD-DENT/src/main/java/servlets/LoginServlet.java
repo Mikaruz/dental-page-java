@@ -7,6 +7,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -15,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Administrator;
 import model.Controller;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -34,22 +37,22 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
-    String email = request.getParameter("email");
-    String password = request.getParameter("password");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-    String urlDB = "jdbc:mysql://localhost:3306/jad_dent?serverTimezone=UTC";
-    String userDB = "root";
-    String passwordDB = "";
+        String urlDB = "jdbc:mysql://localhost:3306/jad_dent?serverTimezone=UTC";
+        String userDB = "root";
+        String passwordDB = "";
 
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         Connection conn = DriverManager.getConnection(urlDB, userDB, passwordDB);
 
         // Consulta SQL para buscar el usuario por correo electrónico
-        String sql = "SELECT * FROM useradmin WHERE USERNAME = ?";
+        String sql = "SELECT USERID, PASSWORD FROM useradmin WHERE USERNAME = ? AND USERROLE = 'admin'";
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
         preparedStatement.setString(1, email);
         ResultSet resultSet = preparedStatement.executeQuery();
@@ -62,9 +65,30 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
 
             // Verifica si la contraseña ingresada coincide con el hash almacenado
             if (BCrypt.checkpw(password, dbHashedPassword)) {
+                int userId = resultSet.getInt("USERID");
+                
+                List<Administrator> administratorList = new ArrayList<Administrator>();
+        
+                String name = "";
+                
+                administratorList = controller.getAdministratorList();
+        
+                for (Administrator administrator : administratorList) {
+                    if (administrator.getUser().getUserId() == userId) {
+                        // El usuario autenticado tiene el mismo userId que un administrador
+                        name = administrator.getName();
+                        
+                        break;
+                    }
+                }
                 // El inicio de sesión es exitoso, la contraseña es válida
                 // Puedes establecer una sesión o redireccionar al usuario a la página de inicio
-                response.sendRedirect("index.jsp");
+                HttpSession mySession = request.getSession();
+                
+                mySession.setAttribute("user", name);
+                mySession.setAttribute("userId", userId);
+
+                response.sendRedirect("index.jsp"); 
             } else {
                 // Las credenciales son incorrectas, muestra un mensaje de error
                 request.setAttribute("mensajeError", "Credenciales incorrectas");

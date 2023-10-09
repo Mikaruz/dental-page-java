@@ -44,7 +44,7 @@ public class CreateNewPatientAppointmentServlet extends HttpServlet {
         
         String phoneNumber = request.getParameter("phonenumber");
         
-        Patient patient = controller.createPatient2(name, lastName, email, password, dni, phoneNumber);
+        Patient patient = controller.createPendingPatient(name, lastName, email, password, dni, phoneNumber);
         
         int patientId = patient.getPatientId();
         

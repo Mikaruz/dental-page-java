@@ -94,12 +94,44 @@
                     name="specialty"
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                   >
-                    <option value="one">Especialidad 1</option>
-                    <option value="two">Especialidad 2</option>
-                    <option value="three">Especialidad 3</option>
-                    <option value="four">Especialidad 4</option>
+                  <option value="Odontologia general">Odontología general</option>
+                  <option value="Odontopediatria">Odontopediatría</option>
+                  <option value="Ortodoncia">Ortodoncia</option>
+                  <option value="Cirugia maxilofacial y oral">Cirugía maxilofacial y oral</option>
                   </select>
                 </label>
+                <div class="mt-4 text-sm">
+                  <div class="flex space-x-4">
+                    <div class="flex-1">
+                      <label class="block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400"
+                          >Entrada</span
+                        >
+                        <input
+                          required
+                          id="begintime"
+                          name="begintime"
+                          type="time"
+                          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        />
+                      </label>
+                    </div>
+                    <div class="flex-1">
+                      <label class="block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400"
+                          >Salida</span
+                        >
+                        <input
+                          required
+                          id="endtime"
+                          name="endtime"
+                          type="time"
+                          class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        />
+                      </label>
+                    </div>
+                  </div>
+                </div>
                 <br />
                 <div class="mt-4 text-sm flex justify-end">
                   <button

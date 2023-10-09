@@ -46,6 +46,8 @@ public class CreatePatientServlet extends HttpServlet {
         appointmentList = controller.getAppointmentList();
         
         
+        
+        
         HttpSession mySession = request.getSession();
         mySession.setAttribute("patientList", patientList);
         mySession.setAttribute("appointmentList", appointmentList);

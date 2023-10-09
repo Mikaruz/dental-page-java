@@ -65,12 +65,26 @@
                       <th class="px-4 py-3">Acciones</th>
                     </tr>
                   </thead>
+                  <%java.time.LocalTime currentTime = java.time.LocalTime.now();%>
                   <%List<Dentist> dentistList = (List) request.getSession().getAttribute("dentistList");%>
                   <%List<Appointment> appointmentList = (List) request.getSession().getAttribute("appointmentList");%>
                   <tbody
                     class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
                   >
                     <%for(Dentist dentist : dentistList){ %>
+                    
+                    <%  
+    // Obtener la hora actual
+
+    
+    // Convertir las cadenas de inicio y fin a objetos LocalTime
+    java.time.LocalTime beginTime = java.time.LocalTime.parse(dentist.getSchedule().getBeginTime());
+    java.time.LocalTime endTime = java.time.LocalTime.parse(dentist.getSchedule().getEndTime());
+    
+    // Verificar si la hora actual está dentro del rango
+    boolean isAvailable = currentTime.isAfter(beginTime) && currentTime.isBefore(endTime);
+    
+%>
                     <tr class="text -gray-700 dark:text-gray-400">
                       <td class="px-4 py-3">
                         <div class="flex items-center text-sm">
@@ -96,11 +110,21 @@
                       </td>
                       <td class="px-4 py-3 text-sm"><%=dentist.getSpecialty()%></td>
                       <td class="px-4 py-3 text-xs">
+                        <% 
+                          if (isAvailable) {
+                        %>
                         <span
                           class="px-2 py-1 font-semibold leading-tight text-green-700 bg-green-100 rounded-full dark:bg-green-700 dark:text-green-100"
                         >
                           Disponible
                         </span>
+                        <% } else { %>
+                          <span
+                          class="px-2 py-1 font-semibold leading-tight text-orange-700 bg-orange-100 rounded-full dark:text-white dark:bg-orange-600"
+                        >
+                         Fuera de turno
+                        </span>
+                        <% } %>
                       </td>
                       <td class="px-4 py-3 text-sm">
                         <% int appointmentCount = 0;
@@ -130,8 +154,10 @@
                                 ></path>
                               </svg>
                             </button>
-                            <input type="hidden" name="dentistId" value="<%=dentist.getDentistId()%>">
-                            <input type="hidden" name="userId" value="<%=dentist.getUser().getUserId()%>">
+                            <input type="hidden" name="dentistid" value="<%=dentist.getDentistId()%>">
+                            <input type="hidden" name="userid" value="<%=dentist.getUser().getUserId()%>">
+                            <input type="hidden" name="scheduleid" value="<%=dentist.getSchedule().getScheduleId()%>">
+                            
                           </form>
                           <form name="delete" action="DeleteDentistServlet" method="POST">
                             <button

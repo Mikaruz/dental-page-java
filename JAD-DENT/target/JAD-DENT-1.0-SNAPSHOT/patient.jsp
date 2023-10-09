@@ -117,7 +117,7 @@
                           <div>
                             <p class="font-semibold"><%=patient.getName() + " " + patient.getLastName()%></p>
                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                              <%=patient.getDni()%>
+                              <%=patient.getDni()%></p>
                           </div>
                         </div>
                       </td>
