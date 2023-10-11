@@ -90,22 +90,20 @@ public class LoginPatientServlet extends HttpServlet {
                         break;
                     }
                 }
-                
-                for(Appointment appointment: appointmentList){
-                   if(appointment.getPatient().getPatientId() == patientId){
-                       
-                       
-                     
-                       appointmentPatientList.add(appointment);
-                   }
-                   
-                }
                 Appointment lastAppointment = null;
-                
-                if (!appointmentPatientList.isEmpty()) {
-                    lastAppointment = appointmentPatientList.get(appointmentPatientList.size() - 1);
-                    // Ahora tienes el último elemento en la variable 'ultimoAppointment'
+                for (Appointment appointment : appointmentList) {
+                    if (appointment.getPatient().getPatientId() == patientId) {
+                        if ("paid".equals(appointment.getStatus())) {
+                            appointmentPatientList.add(appointment);
+                        } else if ("pending".equals(appointment.getStatus())) {
+                            lastAppointment = appointment;
+                        }
+                    }
                 }
+                
+                
+                
+                
                 
                 // El inicio de sesión es exitoso, la contraseña es válida
                 // Puedes establecer una sesión o redireccionar al usuario a la página de inicio

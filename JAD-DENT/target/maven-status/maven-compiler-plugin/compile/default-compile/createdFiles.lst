@@ -5,6 +5,7 @@ servlets\CreateDentistServlet.class
 servlets\DeletePendingAppointmentServlet.class
 servlets\exceptions\IllegalOrphanException.class
 servlets\LoginDentistServlet.class
+servlets\PaidAppointmentServlet.class
 model\Patient.class
 servlets\DeleteDentistServlet.class
 persistence\AppointmentJpaController.class

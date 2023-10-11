@@ -29,15 +29,24 @@ public class AppointmentServlet extends HttpServlet {
             throws ServletException, IOException {
        List<Appointment> appointmentList = new ArrayList<Appointment>();
        List<PendingAppointment> pendingAppointmentList = new ArrayList<PendingAppointment>();
+       List<Appointment> unpaidAppointmentList = new ArrayList<Appointment>();
        
        appointmentList = controller.getAppointmentList();
        pendingAppointmentList = controller.getPendingAppointmentList();
+       
+       
+        for (Appointment appointment : appointmentList) {
+            if(appointment.getStatus().equals("pending")){
+                unpaidAppointmentList.add(appointment);
+            }
+            
+        }       
        
        HttpSession mySession = request.getSession();
        mySession.setAttribute("pendingAppointmentList", pendingAppointmentList);
        
       
-       mySession.setAttribute("appointmentList", appointmentList);
+       mySession.setAttribute("appointmentList", unpaidAppointmentList);
        
        
        response.sendRedirect("appointments.jsp");

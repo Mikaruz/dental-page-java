@@ -74,6 +74,8 @@ public class EditAppointmentServlet extends HttpServlet {
             appointment.setTurnTime(turnTime);
             appointment.setDentalIssue(dentalIssue);
             appointment.setDentist(dentist);
+            
+            controller.editAppointment(appointment);
             response.sendRedirect("AppointmentServlet");
         } catch (ParseException ex) {
             Logger.getLogger(EditAppointmentServlet.class.getName()).log(Level.SEVERE, null, ex);

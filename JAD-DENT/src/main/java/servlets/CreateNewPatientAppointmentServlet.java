@@ -53,7 +53,7 @@ public class CreateNewPatientAppointmentServlet extends HttpServlet {
         
         
         mySession.setAttribute("patientId", patientId);
-        mySession.setAttribute("speciality", speciality);
+       
 
         
         controller.deletePendingAppointment(pendingAppointmentId);

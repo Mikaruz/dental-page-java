@@ -144,6 +144,10 @@ public class Controller {
         controllerPersistence.editDentist(dentist);
     }
     
+    public void editAppointment(Appointment appointment){
+        controllerPersistence.editAppointment(appointment);
+    }
+    
     public void editSchedule(Schedule schedule){
         controllerPersistence.editSchedule(schedule);
     }
@@ -172,7 +176,7 @@ public class Controller {
         return controllerPersistence.getAppointment(appointmentId);
     }
 
-    public void createAppointment(Dentist dentist, Patient patient, Date turnDate, String turnTime, String dentalIssue) {
+    public void createAppointment(Dentist dentist, Patient patient, Date turnDate, String turnTime, String dentalIssue, double price, String status) {
         Appointment appointment = new Appointment();
         
         appointment.setDentist(dentist);
@@ -180,6 +184,9 @@ public class Controller {
         appointment.setTurnDate(turnDate);
         appointment.setTurnTime(turnTime);
         appointment.setDentalIssue(dentalIssue);
+        appointment.setPrice(price);
+        appointment.setStatus(status);
+        
         
         controllerPersistence.createAppointment(appointment);
     }

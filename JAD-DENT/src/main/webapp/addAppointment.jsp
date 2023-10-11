@@ -43,7 +43,7 @@
               </label>
                 <label class="block mt-4 text-sm">
                   <span class="text-gray-700 dark:text-gray-400">
-                    Dentista
+                    Dentista - Especialidad
                   </span>
                   <%List<Dentist> dentistList = (List) request.getSession().getAttribute("dentistList");%>
                   <select
@@ -52,7 +52,7 @@
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                   >
                     <%for(Dentist dentist : dentistList){ %>
-                    <option value="<%=dentist.getDentistId()%>"><%=dentist.getName() + " " + dentist.getLastName()%></option>
+                    <option value="<%=dentist.getDentistId()%>"><%=dentist.getName() + " " + dentist.getLastName() + " - " + dentist.getSpecialty() %></option>
                     <% } %>
 
                   </select>
@@ -88,35 +88,9 @@
                   </div>
                 </div>
 
-                <% String speciality = (String) session.getAttribute("speciality"); %>
+               
 
-                <label class="block mt-4 text-sm">
-                  <span class="text-gray-700 dark:text-gray-400">
-                    Motivo
-                  </span>
-
-                  <% if (speciality == null) { %>
-                    <select
-                      id="dentalissue"
-                      name="dentalissue"
-                      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    >
-                    <option value="Odontologia general">Odontología general</option>
-                    <option value="Odontopediatria">Odontopediatría</option>
-                    <option value="Ortodoncia">Ortodoncia</option>
-                    <option value="Cirugia maxilofacial y oral">Cirugía maxilofacial y oral</option>
-                    </select>
-                  <% } else { %>
-                    <input
-                      readonly,
-                      type="text"
-                      id="dentalissue"
-                      name="dentalissue"
-                      class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-input focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                      value="<%= speciality %>"
-                    >
-                  <% } %>
-                </label>
+                
 
                     
                     

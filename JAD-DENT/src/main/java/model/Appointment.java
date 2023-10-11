@@ -23,6 +23,8 @@ public class Appointment implements Serializable{
     
     private String turnTime;
     private String dentalIssue;
+    private String status;
+    private double price;                                    
     
     @ManyToOne 
     @JoinColumn(name = "dentist_id")
@@ -35,12 +37,18 @@ public class Appointment implements Serializable{
     public Appointment() {
     }
 
-    public Appointment(int appointmentId, Date turnDate, String turnTime, String condition) {
+    public Appointment(int appointmentId, Date turnDate, String turnTime, String dentalIssue, String status, double price, Dentist dentist, Patient patient) {
         this.appointmentId = appointmentId;
         this.turnDate = turnDate;
         this.turnTime = turnTime;
-        this.dentalIssue = condition;
+        this.dentalIssue = dentalIssue;
+        this.status = status;
+        this.price = price;
+        this.dentist = dentist;
+        this.patient = patient;
     }
+
+    
 
     public int getAppointmentId() {
         return appointmentId;
@@ -89,6 +97,23 @@ public class Appointment implements Serializable{
     public void setPatient(Patient patient) {
         this.patient = patient;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+    
     
     
 }

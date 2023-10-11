@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.Appointment;
 import model.Controller;
 import model.Dentist;
 import model.Patient;
@@ -84,19 +85,71 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
         try {
             String date = request.getParameter("turndate");
             String turnTime = request.getParameter("turntime");
-            String dentalIssue = request.getParameter("dentalissue");
+            
+            double price = 0;
+            String status = "pending";
             
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date turnDate = sdf.parse(date);
+            
+            List<Appointment> appointmentList = new ArrayList<Appointment>();
+            
+            appointmentList = controller.getAppointmentList();
             
             int dentistId = Integer.parseInt(request.getParameter("dentistid"));
             int patientId = Integer.parseInt(request.getParameter("patientid"));
             
             Dentist dentist = controller.getDentist(dentistId);
+            
+            String dentalIssue = dentist.getSpecialty();
             Patient patient = controller.getPatient(patientId);
             
-            controller.createAppointment(dentist, patient, turnDate, turnTime, dentalIssue);
-            response.sendRedirect("AppointmentServlet");
+            boolean isDuplicateAppointment = false;
+            
+            switch (dentalIssue) {
+                case "Odontologia General":
+                    price = 50.0;
+                    break;
+                case "Odontopediatria":
+                    price = 60.0;
+                    break;
+                case "Ortodoncia":
+                    price = 80.0;
+                    break;
+                case "Cirugia maxilofacial y oral":
+                    price = 100.0;
+                    break;
+                default:
+                    // Opción predeterminada en caso de selección inválida
+                    price = 0.0;
+                    break;
+            }
+            
+            System.out.println(appointmentList);
+            for (Appointment existingAppointment : appointmentList) {
+                
+                
+                if (existingAppointment.getDentist().getDentistId() == dentistId &&
+                    existingAppointment.getTurnDate().equals(turnDate) &&
+                    existingAppointment.getTurnTime().equals(turnTime)) {
+                    // Si ya existe una cita con la misma fecha, hora y dentista
+                    
+                    
+                    isDuplicateAppointment = true;
+                    break;  // Termina la iteración porque ya encontramos un duplicado
+                }
+            }   
+            
+            if (isDuplicateAppointment) {
+                // Muestra un mensaje de error al usuario
+                request.setAttribute("errorMessage", "Ya existe una cita programada para esta fecha y hora con el mismo dentista.");
+                request.getRequestDispatcher("error.jsp").forward(request, response);
+            } else {
+                // Crea la cita si no hay duplicados
+                
+                controller.createAppointment(dentist, patient, turnDate, turnTime, dentalIssue, price, status);
+                response.sendRedirect("AppointmentServlet");
+    }
         } catch (ParseException ex) {
             Logger.getLogger(CreateAppointmentPatientServlet.class.getName()).log(Level.SEVERE, null, ex);
         }

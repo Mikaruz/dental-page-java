@@ -88,6 +88,14 @@ public class ControllerPersistence {
         return pendingAppointmentJpa.findPendingAppointment(pendingAppointmentId);
     }
     
+    public void editAppointment(Appointment appointment){
+        try {
+            appointmentJpa.edit(appointment);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     public void editDentist(Dentist dentist){
         try {
             dentistJpa.edit(dentist);

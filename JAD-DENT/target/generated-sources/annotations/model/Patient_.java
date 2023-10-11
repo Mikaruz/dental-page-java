@@ -9,7 +9,7 @@ import model.Appointment;
 import model.Parent;
 import model.UserAdmin;
 
-@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2023-10-09T14:58:24")
+@Generated(value="EclipseLink-2.7.12.v20230209-rNA", date="2023-10-11T14:12:48")
 @StaticMetamodel(Patient.class)
 public class Patient_ { 
 

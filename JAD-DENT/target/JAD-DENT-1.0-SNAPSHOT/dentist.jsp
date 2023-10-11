@@ -127,12 +127,12 @@
                         <% } %>
                       </td>
                       <td class="px-4 py-3 text-sm">
-                        <% int appointmentCount = 0;
-                           for (Appointment appointment : appointmentList) {
-                             if (appointment.getDentist().getDentistId() == dentist.getDentistId()) {
-                               appointmentCount++;
-                             }
-                           }
+                        <%int appointmentCount = 0;
+                        for (Appointment appointment : appointmentList) {
+                            if (appointment.getDentist().getDentistId() == dentist.getDentistId() && "pending".equals(appointment.getStatus())) {
+                                appointmentCount++;
+                            }
+                        }
                            
                         %>
                      <%=appointmentCount%> </td>

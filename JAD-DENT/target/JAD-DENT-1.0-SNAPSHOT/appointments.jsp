@@ -33,6 +33,29 @@
             >
               Citas agendadas
             </h4>
+            <div class="relative mb-8 focus-within:text-purple-500">
+              <div class="absolute inset-y-0 flex items-center pl-2">
+                <svg
+                  class="w-4 h-4"
+                  aria-hidden="true"
+                  fill="#cd99ff"
+                  viewBox="0 0 20 20"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </div>
+              <input
+                class="w-full pl-8 pr-2 text-sm text-gray-700 placeholder-gray-600 bg-gray-100 border-0 rounded-md dark:placeholder-gray-500 dark:focus:shadow-outline-gray dark:focus:placeholder-gray-600 dark:bg-gray-700 dark:text-gray-200 focus:placeholder-gray-500 focus:bg-white focus:border-purple-300 focus:outline-none focus:shadow-outline-purple form-input"
+                data-table="w-full whitespace-no-wrap"
+                type="text"
+                placeholder="Buscar cita"
+                aria-label="Search"
+              />
+            </div>
             <div class="w-full overflow-hidden rounded-lg shadow-xs">
               <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
@@ -116,6 +139,17 @@
                       
                       <td class="px-4 py-3">
                         <div class="flex items-center space-x-4 text-sm">
+                          <form name="paid" action="PaidAppointmentServlet" method="GET">
+                            <input type="hidden" name="appointmentid" value="<%=appointment.getAppointmentId()%>">
+                             <input type="hidden" name="patientid" value="<%=appointment.getPatient().getPatientId()%>">
+                            <button
+                              class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                              aria-label="Edit"
+                            >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                            </button>
+                            
+                          </form>
                           <form name="edit" action="EditAppointmentServlet" method="GET">
                             <input type="hidden" name="appointmentid" value="<%=appointment.getAppointmentId()%>">
                              <input type="hidden" name="patientid" value="<%=appointment.getPatient().getPatientId()%>">
