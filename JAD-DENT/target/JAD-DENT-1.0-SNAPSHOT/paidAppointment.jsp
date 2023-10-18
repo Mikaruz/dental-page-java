@@ -28,7 +28,7 @@
 
           <%Appointment appointment = (Appointment) request.getSession().getAttribute("paidAppointment");%>
          <%Patient patient = (Patient) request.getSession().getAttribute("paidPatient");%>
-             <%double igv = (double) request.getSession().getAttribute("igv");  %>
+             
            
              <%SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  %>
              
@@ -58,15 +58,26 @@
                 <p class="text-gray-600 dark:text-gray-400">Fecha de emisión: <%=date %></p>
                 
                 <h4 class="mb-1 mt-4 font-semibold text-gray-600 dark:text-gray-300">
+                  Comentario
+                 </h4>
+                <p class="text-gray-600 dark:text-gray-400"><%=appointment.getObservations() %></p>
+                
+                <h4 class="mb-1 mt-4 font-semibold text-gray-600 dark:text-gray-300">
                   Detalle del servicio
                  </h4>
+                
+                
                 <p class="text-gray-600 dark:text-gray-400"><%=appointment.getDentalIssue() + " (S/ " + appointment.getPrice() + ")"%></p>
 
-                <p class="text-gray-600 mt-4 dark:text-gray-400">OP. GRAVADA: <%="S/ " + appointment.getPrice()%></p>
-                <p class="text-gray-600 dark:text-gray-400">OP. EXONERADA: S/ 0</p>
-                <p class="text-gray-600 dark:text-gray-400">OP. INAFECTA: S/ 0</p>
-                <p class="text-gray-600 dark:text-gray-400">IGV: <%="S/ " + igv%></p>
-                <p class="text-gray-600 dark:text-gray-400">IMPORTE TOTAL: <%="S/ " + (appointment.getPrice() + igv)%></p>
+                <%if(appointment.getAditional().equals("null")){}else{
+                
+                
+                %>
+                    <p class="text-gray-600 dark:text-gray-400"><%=appointment.getAditional() %></p>
+                    
+                  <%  }  %>
+                
+                <p class="text-gray-600 dark:text-gray-400">IMPORTE TOTAL: <%="S/ " + appointment.getPrice()%></p>
 
               </div>
 

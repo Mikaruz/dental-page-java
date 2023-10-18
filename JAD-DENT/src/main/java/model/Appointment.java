@@ -24,6 +24,8 @@ public class Appointment implements Serializable{
     private String turnTime;
     private String dentalIssue;
     private String status;
+    private String observations;
+    private String aditional;
     private double price;                                    
     
     @ManyToOne 
@@ -37,18 +39,19 @@ public class Appointment implements Serializable{
     public Appointment() {
     }
 
-    public Appointment(int appointmentId, Date turnDate, String turnTime, String dentalIssue, String status, double price, Dentist dentist, Patient patient) {
+    public Appointment(int appointmentId, Date turnDate, String turnTime, String dentalIssue, String status, String observations, String aditional, double price, Dentist dentist, Patient patient) {
         this.appointmentId = appointmentId;
         this.turnDate = turnDate;
         this.turnTime = turnTime;
         this.dentalIssue = dentalIssue;
         this.status = status;
+        this.observations = observations;
+        this.aditional = aditional;
         this.price = price;
         this.dentist = dentist;
         this.patient = patient;
     }
 
-    
 
     public int getAppointmentId() {
         return appointmentId;
@@ -112,6 +115,22 @@ public class Appointment implements Serializable{
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getObservations() {
+        return observations;
+    }
+
+    public void setObservations(String observations) {
+        this.observations = observations;
+    }
+
+    public String getAditional() {
+        return aditional;
+    }
+
+    public void setAditional(String aditional) {
+        this.aditional = aditional;
     }
     
     

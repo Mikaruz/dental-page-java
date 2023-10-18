@@ -34,7 +34,7 @@ public class PaidAppointmentServlet extends HttpServlet {
         Patient patient = controller.getPatient(patientId);
         Appointment appointment = controller.getAppointment(appointmentId);
         
-        double igv = appointment.getPrice() * 0.18;
+        
         
         HttpSession mySession = request.getSession();
         
@@ -42,7 +42,7 @@ public class PaidAppointmentServlet extends HttpServlet {
         
         mySession.setAttribute("paidPatient", patient);
         mySession.setAttribute("paidAppointment", appointment);
-        mySession.setAttribute("igv", igv);
+        
         response.sendRedirect("paidAppointment.jsp");
     }
 

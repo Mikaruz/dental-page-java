@@ -35,6 +35,7 @@ model\Dentist.class
 persistence\exceptions\IllegalOrphanException.class
 model\Administrator.class
 persistence\ControllerPersistence.class
+servlets\AppointmentDetailsServlet.class
 persistence\UserAdminJpaController.class
 servlets\AppointmentServlet.class
 model\exceptions\PreexistingEntityException.class

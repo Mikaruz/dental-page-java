@@ -18,6 +18,7 @@ C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\exceptions\
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\EditDentistServlet.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\DeleteDentistServlet.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\PaidAppointmentServlet.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\AppointmentDetailsServlet.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\EditPatientServlet.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\UserAdminJpaController.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\CreateNewPatientAppointmentServlet.java

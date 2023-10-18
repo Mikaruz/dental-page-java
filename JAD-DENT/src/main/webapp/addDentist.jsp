@@ -89,9 +89,8 @@
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                   >
                     <option value="Odontologia general">Odontología general</option>
-                    <option value="Odontopediatria">Odontopediatría</option>
-                    <option value="Ortodoncia">Ortodoncia</option>
-                    <option value="Cirugia maxilofacial y oral">Cirugía maxilofacial y oral</option>
+                    <option value="Endodoncia">Endodoncia</option>
+                    <option value="Cirugia bucomaxilofacial">Cirugia bucomaxilofacial</option>
                   </select>
                 </label>
                 <div class="mt-4 text-sm">

@@ -101,31 +101,112 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
             
             Dentist dentist = controller.getDentist(dentistId);
             
-            String dentalIssue = dentist.getSpecialty();
+            
             Patient patient = controller.getPatient(patientId);
+            String observations = request.getParameter("observations");
+          
+            String specialty = request.getParameter("specialty");
+            String dentalIssue = request.getParameter("dentalIssue");
+           String aditional = request.getParameter("aditional");
+           
+           String aditionalPaid = "null";
+
+        if (aditional == null) {
+            // El parámetro es nulo, puedes manejarlo aquí, por ejemplo, asignando un valor predeterminado o lanzando una excepción.
+            // Aquí un ejemplo de asignar un valor predeterminado:
+            aditional = "Valor predeterminado";
+        }
+            System.out.println(dentalIssue);
+            System.out.println(specialty);
+            
+            
+            int aditionalPrice = 0;
+            
+            
+            
+            System.out.println(aditional);
+            
+            String dentalNumberParam = request.getParameter("number");
+            int dentalNumber = 0; // Valor predeterminado o valor de error si el parámetro es nulo
+
+            if (dentalNumberParam != null && !dentalNumberParam.isEmpty()) {
+                try {
+                    dentalNumber = Integer.parseInt(dentalNumberParam);
+                } catch (NumberFormatException e) {
+                    // Manejo de error si el valor no es un número válido
+                    // Puedes registrar el error o tomar medidas específicas aquí
+                }
+            }
+            
             
             boolean isDuplicateAppointment = false;
             
-            switch (dentalIssue) {
-                case "Odontologia General":
-                    price = 50.0;
+            switch(aditional){
+                case "one":
+                    aditionalPrice = 50;
+                    aditionalPaid = "Tratamiento de Gengivitis";
                     break;
-                case "Odontopediatria":
-                    price = 60.0;
+                case "two":
+                    aditionalPrice = 80;
+                    aditionalPaid = "Tratamiento de Periondinitis";
                     break;
-                case "Ortodoncia":
-                    price = 80.0;
+                case "three":
+                     aditionalPaid = "Se añadio Fluor";
+                    aditionalPrice = 20;
                     break;
-                case "Cirugia maxilofacial y oral":
-                    price = 100.0;
+                case "four":
+                    aditionalPrice = 0;
                     break;
+                    
+                
+            }
+            
+            
+            
+            
+         
+            
+            
+            
+            switch (specialty) {
+                case "Odontologia general":
+                    
+                    switch(dentalIssue){
+                        case "Profilaxis":
+                            price = 50 + aditionalPrice;
+                            break;
+                        case "Blanqueamiento dental":
+                            price = 50;
+                            break;
+                        case "Tratamiento de enfermedades de encias":
+                            price = aditionalPrice;
+                            break;
+                        case "Ortodoncia":
+                            price = 100;
+                            break;
+                        case "Implantes dentales":
+                            price = 50 * dentalNumber;
+                            aditionalPaid = "Tratamiento por " + dentalNumber + " dientes";
+                            break;
+                    }
+                    
+                    break;
+                case "Endodoncia":
+                    price = 60 * dentalNumber;
+                     aditionalPaid = "Tratamiento por " + dentalNumber + " dientes";
+                    break;
+                case "Cirugia bucomaxilofacial":
+                    price = 80 * dentalNumber;
+                     aditionalPaid = "Tratamiento por " + dentalNumber + " dientes";
+                    break;
+            
                 default:
                     // Opción predeterminada en caso de selección inválida
                     price = 0.0;
                     break;
             }
             
-            System.out.println(appointmentList);
+            
             for (Appointment existingAppointment : appointmentList) {
                 
                 
@@ -147,7 +228,7 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
             } else {
                 // Crea la cita si no hay duplicados
                 
-                controller.createAppointment(dentist, patient, turnDate, turnTime, dentalIssue, price, status);
+                controller.createAppointment(dentist, patient, turnDate, turnTime, dentalIssue, price, status, observations, aditionalPaid);
                 response.sendRedirect("AppointmentServlet");
     }
         } catch (ParseException ex) {

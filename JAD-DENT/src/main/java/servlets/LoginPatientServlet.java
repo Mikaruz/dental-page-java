@@ -103,7 +103,7 @@ public class LoginPatientServlet extends HttpServlet {
                 
                 
                 
-                
+                 
                 
                 // El inicio de sesión es exitoso, la contraseña es válida
                 // Puedes establecer una sesión o redireccionar al usuario a la página de inicio
