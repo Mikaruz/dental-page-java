@@ -107,6 +107,32 @@ public class Controller {
         
     }
     
+    public void createAppointment(Dentist dentist, Patient patient, Date turnDate, String turnTime, String dentalIssue, double price, String status, String observations, String aditional) {
+        Appointment appointment = new Appointment();
+        
+        appointment.setDentist(dentist);
+        appointment.setPatient(patient);
+        appointment.setTurnDate(turnDate);
+        appointment.setTurnTime(turnTime);
+        appointment.setDentalIssue(dentalIssue);
+        appointment.setPrice(price);
+        appointment.setStatus(status);
+        appointment.setAditional(aditional);
+        appointment.setObservations(observations);
+        
+        controllerPersistence.createAppointment(appointment);
+    }
+    
+    public void createToothAppointment(String name, Appointment appointment){
+        ToothAppointment toothAppointment = new ToothAppointment();
+        
+        toothAppointment.setName(name);
+        toothAppointment.setAppointments(appointment);
+        
+        controllerPersistence.createToothAppointment(toothAppointment);
+    }
+    
+    
     public List<Dentist> getDentistList(){
         controllerPersistence.getDentistList();
         
@@ -176,21 +202,7 @@ public class Controller {
         return controllerPersistence.getAppointment(appointmentId);
     }
 
-    public void createAppointment(Dentist dentist, Patient patient, Date turnDate, String turnTime, String dentalIssue, double price, String status, String observations, String aditional) {
-        Appointment appointment = new Appointment();
-        
-        appointment.setDentist(dentist);
-        appointment.setPatient(patient);
-        appointment.setTurnDate(turnDate);
-        appointment.setTurnTime(turnTime);
-        appointment.setDentalIssue(dentalIssue);
-        appointment.setPrice(price);
-        appointment.setStatus(status);
-        appointment.setAditional(aditional);
-        appointment.setObservations(observations);
-        
-        controllerPersistence.createAppointment(appointment);
-    }
+    
 
     public List<Appointment> getAppointmentList() {
         controllerPersistence.getAppointmentList();

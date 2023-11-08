@@ -27,17 +27,7 @@ public class Patient implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date birthDate;
     
-    private boolean brushesTeethRegularly;
-    private boolean flossesTeeth;
-    private boolean hasAllergies;
-    private String allergiesDescription;
-    private boolean hadDentalProcedures;
-    private String previousProcedures;
-    private boolean takesMedications;
-    private String medicationsList;
     
-    @OneToOne
-    private Parent hasParent;
     
     @OneToMany (mappedBy = "patient")
     private List<Appointment> appointments;
@@ -48,22 +38,13 @@ public class Patient implements Serializable {
     public Patient() {
     }
 
-    public Patient(int patientId, String dni, String name, String lastName, String phoneNumber, Date birthDate, boolean brushesTeethRegularly, boolean flossesTeeth, boolean hasAllergies, String allergiesDescription, boolean hadDentalProcedures, String previousProcedures, boolean takesMedications, String medicationsList, Parent hasParent, List<Appointment> appointments, UserAdmin user) {
+    public Patient(int patientId, String dni, String name, String lastName, String phoneNumber, Date birthDate, List<Appointment> appointments, UserAdmin user) {
         this.patientId = patientId;
         this.dni = dni;
         this.name = name;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.birthDate = birthDate;
-        this.brushesTeethRegularly = brushesTeethRegularly;
-        this.flossesTeeth = flossesTeeth;
-        this.hasAllergies = hasAllergies;
-        this.allergiesDescription = allergiesDescription;
-        this.hadDentalProcedures = hadDentalProcedures;
-        this.previousProcedures = previousProcedures;
-        this.takesMedications = takesMedications;
-        this.medicationsList = medicationsList;
-        this.hasParent = hasParent;
         this.appointments = appointments;
         this.user = user;
     }
@@ -116,78 +97,6 @@ public class Patient implements Serializable {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
-    }
-
-    public boolean isBrushesTeethRegularly() {
-        return brushesTeethRegularly;
-    }
-
-    public void setBrushesTeethRegularly(boolean brushesTeethRegularly) {
-        this.brushesTeethRegularly = brushesTeethRegularly;
-    }
-
-    public boolean isFlossesTeeth() {
-        return flossesTeeth;
-    }
-
-    public void setFlossesTeeth(boolean flossesTeeth) {
-        this.flossesTeeth = flossesTeeth;
-    }
-
-    public boolean isHasAllergies() {
-        return hasAllergies;
-    }
-
-    public void setHasAllergies(boolean hasAllergies) {
-        this.hasAllergies = hasAllergies;
-    }
-
-    public String getAllergiesDescription() {
-        return allergiesDescription;
-    }
-
-    public void setAllergiesDescription(String allergiesDescription) {
-        this.allergiesDescription = allergiesDescription;
-    }
-
-    public boolean isHadDentalProcedures() {
-        return hadDentalProcedures;
-    }
-
-    public void setHadDentalProcedures(boolean hadDentalProcedures) {
-        this.hadDentalProcedures = hadDentalProcedures;
-    }
-
-    public String getPreviousProcedures() {
-        return previousProcedures;
-    }
-
-    public void setPreviousProcedures(String previousProcedures) {
-        this.previousProcedures = previousProcedures;
-    }
-
-    public boolean isTakesMedications() {
-        return takesMedications;
-    }
-
-    public void setTakesMedications(boolean takesMedications) {
-        this.takesMedications = takesMedications;
-    }
-
-    public String getMedicationsList() {
-        return medicationsList;
-    }
-
-    public void setMedicationsList(String medicationsList) {
-        this.medicationsList = medicationsList;
-    }
-
-    public Parent getHasParent() {
-        return hasParent;
-    }
-
-    public void setHasParent(Parent hasParent) {
-        this.hasParent = hasParent;
     }
 
     public List<Appointment> getAppointments() {

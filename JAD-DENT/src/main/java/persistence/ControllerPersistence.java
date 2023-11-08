@@ -10,6 +10,7 @@ import model.Dentist;
 import model.Patient;
 import model.PendingAppointment;
 import model.Schedule;
+import model.ToothAppointment;
 import model.UserAdmin;
 import persistence.exceptions.NonexistentEntityException;
 
@@ -23,6 +24,7 @@ public class ControllerPersistence {
     PatientJpaController patientJpa = new PatientJpaController();
     ScheduleJpaController scheduleJpa = new ScheduleJpaController();
     UserAdminJpaController userJpa = new UserAdminJpaController();
+    ToothAppointmentJpaController toothAppointmentJpa = new ToothAppointmentJpaController();
     
     public void createUser(UserAdmin user) {
         userJpa.create(user);
@@ -170,5 +172,9 @@ public class ControllerPersistence {
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void createToothAppointment(ToothAppointment toothAppointment) {
+        toothAppointmentJpa.create(toothAppointment);
     }
 }

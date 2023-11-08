@@ -4,12 +4,12 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>model.Appointment</class>
     <class>model.Dentist</class>
-    <class>model.Parent</class>
     <class>model.Patient</class>
     <class>model.Schedule</class>
     <class>model.UserAdmin</class>
     <class>model.PendingAppointment</class>
     <class>model.Administrator</class>
+    <class>model.ToothAppointment</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/jad_dent?serverTimezone=UTC"/>

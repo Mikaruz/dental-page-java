@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -26,33 +25,19 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
     }
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        
         String patientIdParameter = request.getParameter("patientId");
-        
-        
-        
-        
         int patientId;
 
         if (patientIdParameter != null) {
-            // Si patientIdParameter no es null, intenta convertirlo a un entero
-            
-                patientId = Integer.parseInt(patientIdParameter);
-            
+                patientId = Integer.parseInt(patientIdParameter);     
         } else {
-            // Si patientIdParameter es null, usa nuevoPacienteId en su lugar
             patientId = (int) request.getSession().getAttribute("patientId");
         }
-        
-        
         
         List<Dentist> dentistList = new ArrayList<Dentist>();
         dentistList = controller.getDentistList();
@@ -62,19 +47,7 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
         HttpSession mySession = request.getSession();
         mySession.setAttribute("appointmentPatient", patient);
         mySession.setAttribute("dentistList", dentistList);
-        
-        if (mySession.getAttribute("speciality") != null) {
-            // El atributo "speciality" está presente, puedes obtener su valor
-            String speciality = (String) mySession.getAttribute("speciality");
-            mySession.setAttribute("speciality", speciality);
-            System.out.println(speciality);
-            // Haz lo que necesites con la variable "speciality"
-        } else {
-            // El atributo "speciality" no está presente en la sesión, puedes manejarlo de alguna manera
-        }
 
-        
-        
         response.sendRedirect("addAppointment.jsp");
     }
 
@@ -83,60 +56,53 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
+            int dentistId = Integer.parseInt(request.getParameter("dentistid"));
+            Dentist dentist = controller.getDentist(dentistId);
+            
+            int patientId = Integer.parseInt(request.getParameter("patientid"));
+            Patient patient = controller.getPatient(patientId);
+            
             String date = request.getParameter("turndate");
-            String turnTime = request.getParameter("turntime");
-            
-            double price = 0;
-            String status = "pending";
-            
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date turnDate = sdf.parse(date);
             
-            List<Appointment> appointmentList = new ArrayList<Appointment>();
+            String aditional = request.getParameter("aditional");
+            if (aditional == null) {      
+                aditional = "";
+            }
             
-            appointmentList = controller.getAppointmentList();
-            
-            int dentistId = Integer.parseInt(request.getParameter("dentistid"));
-            int patientId = Integer.parseInt(request.getParameter("patientid"));
-            
-            Dentist dentist = controller.getDentist(dentistId);
-            
-            
-            Patient patient = controller.getPatient(patientId);
+            String turnTime = request.getParameter("turntime");
             String observations = request.getParameter("observations");
-          
             String specialty = request.getParameter("specialty");
             String dentalIssue = request.getParameter("dentalIssue");
-           String aditional = request.getParameter("aditional");
-           
-           String aditionalPaid = "null";
+            
+            List<Appointment> appointmentList = new ArrayList<Appointment>();
+            appointmentList = controller.getAppointmentList();
+            
+            String status = "pending";
+            String aditionalPaid = "null";
+            int dentalNumber = 0;
+            double price = 0;
+            double aditionalPrice;  
+            
+            
+            
 
-        if (aditional == null) {
-            // El parámetro es nulo, puedes manejarlo aquí, por ejemplo, asignando un valor predeterminado o lanzando una excepción.
-            // Aquí un ejemplo de asignar un valor predeterminado:
-            aditional = "Valor predeterminado";
-        }
-            System.out.println(dentalIssue);
-            System.out.println(specialty);
+            System.out.println("DENTALISSUE" +dentalIssue);
+            System.out.println("ESPECIALIDAD"+ specialty);
             
             
-            int aditionalPrice = 0;
-            
-            
-            
-            System.out.println(aditional);
-            
-            String dentalNumberParam = request.getParameter("number");
-            int dentalNumber = 0; // Valor predeterminado o valor de error si el parámetro es nulo
-
-            if (dentalNumberParam != null && !dentalNumberParam.isEmpty()) {
-                try {
-                    dentalNumber = Integer.parseInt(dentalNumberParam);
-                } catch (NumberFormatException e) {
-                    // Manejo de error si el valor no es un número válido
-                    // Puedes registrar el error o tomar medidas específicas aquí
+            String[] teeth = request.getParameterValues("tooth");
+            if (teeth != null) {
+                for (String opcion : teeth) {
+                    System.out.println("Diente Nº: " + opcion);
+                    dentalNumber++;
                 }
             }
+            
+            System.out.println(dentalNumber);
+            System.out.println(aditional);
+            
             
             
             boolean isDuplicateAppointment = false;
@@ -144,11 +110,11 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
             switch(aditional){
                 case "one":
                     aditionalPrice = 50;
-                    aditionalPaid = "Tratamiento de Gengivitis";
+                    aditionalPaid = "Tratamiento de Gengivitis por " + dentalNumber + " dientes.";
                     break;
                 case "two":
                     aditionalPrice = 80;
-                    aditionalPaid = "Tratamiento de Periondinitis";
+                    aditionalPaid = "Tratamiento de Periondinitis por " + dentalNumber + " dientes.";
                     break;
                 case "three":
                      aditionalPaid = "Se añadio Fluor";
@@ -157,8 +123,8 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
                 case "four":
                     aditionalPrice = 0;
                     break;
-                    
-                
+                default:
+                    aditionalPrice = 0;
             }
             
             
@@ -179,7 +145,8 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
                             price = 50;
                             break;
                         case "Tratamiento de enfermedades de encias":
-                            price = aditionalPrice;
+                            price = aditionalPrice * dentalNumber;
+                            
                             break;
                         case "Ortodoncia":
                             price = 100;
@@ -226,13 +193,16 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
                 request.setAttribute("errorMessage", "Ya existe una cita programada para esta fecha y hora con el mismo dentista.");
                 request.getRequestDispatcher("error.jsp").forward(request, response);
             } else {
-                // Crea la cita si no hay duplicados
+                
                 
                 controller.createAppointment(dentist, patient, turnDate, turnTime, dentalIssue, price, status, observations, aditionalPaid);
+                
                 response.sendRedirect("AppointmentServlet");
     }
         } catch (ParseException ex) {
             Logger.getLogger(CreateAppointmentPatientServlet.class.getName()).log(Level.SEVERE, null, ex);
+            request.setAttribute("errorMessage", ex);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         }
     }
 
@@ -240,6 +210,5 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
-
+    }
 }
