@@ -94,8 +94,8 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
             
             String[] teeth = request.getParameterValues("tooth");
             if (teeth != null) {
-                for (String opcion : teeth) {
-                    System.out.println("Diente Nº: " + opcion);
+                for (String tooth : teeth) {
+                    System.out.println("Diente Nº: " + tooth);
                     dentalNumber++;
                 }
             }
@@ -195,12 +195,20 @@ public class CreateAppointmentPatientServlet extends HttpServlet {
             } else {
                 
                 
-                controller.createAppointment(dentist, patient, turnDate, turnTime, dentalIssue, price, status, observations, aditionalPaid);
+                int appointmentId = controller.createAndReturnIdAppointment(dentist, patient, turnDate, turnTime, dentalIssue, price, status, observations, aditionalPaid);
+                Appointment appointment = controller.getAppointment(appointmentId);
                 
+                if (teeth != null) {
+                    for (String tooth : teeth) {
+                        controller.createToothAppointment(tooth, appointment);
+                    }
+                }
+                
+                
+                System.out.println("CITAID CON EXITO PAPULINCE GAA: " + appointmentId);
                 response.sendRedirect("AppointmentServlet");
     }
         } catch (ParseException ex) {
-            Logger.getLogger(CreateAppointmentPatientServlet.class.getName()).log(Level.SEVERE, null, ex);
             request.setAttribute("errorMessage", ex);
             request.getRequestDispatcher("error.jsp").forward(request, response);
         }

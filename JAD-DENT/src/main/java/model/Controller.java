@@ -123,6 +123,22 @@ public class Controller {
         controllerPersistence.createAppointment(appointment);
     }
     
+    public int createAndReturnIdAppointment(Dentist dentist, Patient patient, Date turnDate, String turnTime, String dentalIssue, double price, String status, String observations, String aditional) {
+        Appointment appointment = new Appointment();
+        
+        appointment.setDentist(dentist);
+        appointment.setPatient(patient);
+        appointment.setTurnDate(turnDate);
+        appointment.setTurnTime(turnTime);
+        appointment.setDentalIssue(dentalIssue);
+        appointment.setPrice(price);
+        appointment.setStatus(status);
+        appointment.setAditional(aditional);
+        appointment.setObservations(observations);
+        
+        return controllerPersistence.createAndReturnIdAppointment(appointment);
+    }
+    
     public void createToothAppointment(String name, Appointment appointment){
         ToothAppointment toothAppointment = new ToothAppointment();
         

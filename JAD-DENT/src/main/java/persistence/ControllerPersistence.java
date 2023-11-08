@@ -133,6 +133,11 @@ public class ControllerPersistence {
     public void createAppointment(Appointment appointment) {
         appointmentJpa.create(appointment);
     }
+    
+    public int createAndReturnIdAppointment(Appointment appointment) {
+        return appointmentJpa.createAndReturnId(appointment);
+    }
+
 
     public List<Appointment> getAppointmentList() {
         return appointmentJpa.findAppointmentEntities();
@@ -177,4 +182,6 @@ public class ControllerPersistence {
     public void createToothAppointment(ToothAppointment toothAppointment) {
         toothAppointmentJpa.create(toothAppointment);
     }
+    
+    
 }

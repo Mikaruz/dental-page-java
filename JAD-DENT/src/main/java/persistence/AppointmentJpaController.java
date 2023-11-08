@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package persistence;
 
 import java.io.Serializable;
@@ -16,10 +12,6 @@ import javax.persistence.criteria.Root;
 import model.Appointment;
 import persistence.exceptions.NonexistentEntityException;
 
-/**
- *
- * @author gerso
- */
 public class AppointmentJpaController implements Serializable {
 
     public AppointmentJpaController(EntityManagerFactory emf) {
@@ -47,6 +39,24 @@ public class AppointmentJpaController implements Serializable {
                 em.close();
             }
         }
+    }
+    
+    public int createAndReturnId(Appointment appointment) {
+        EntityManager em = null;
+        int lastId = -1;
+        try {
+            em = getEntityManager();
+            em.getTransaction().begin();
+            em.persist(appointment);
+            em.getTransaction().commit();
+            
+            lastId = appointment.getAppointmentId();
+        } finally {
+            if (em != null) {
+                em.close();
+            }
+        }
+        return lastId;
     }
 
     public void edit(Appointment appointment) throws NonexistentEntityException, Exception {
@@ -138,5 +148,4 @@ public class AppointmentJpaController implements Serializable {
             em.close();
         }
     }
-    
 }
