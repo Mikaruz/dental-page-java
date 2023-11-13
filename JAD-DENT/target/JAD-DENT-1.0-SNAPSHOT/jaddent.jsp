@@ -1,3 +1,4 @@
+<%@page import="java.util.Optional"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,23 +22,31 @@
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="css/tooplate-style.css" />
 </head>
-<%
-      // Obtener la sesión de usuario
-        HttpSession countSession = request.getSession(true);
+<script>
+// Obtener el contador almacenado localmente
+let visitCount = localStorage.getItem('visitCount');
 
-        // Incrementar el contador en cada visita
-        Integer contador = (Integer) countSession.getAttribute("contador");
+// Verificar si ya existe un contador en el almacenamiento local
+if (!visitCount) {
+    // Si no existe, inicializar el contador a 1
+    visitCount = 1;
+} else {
+    // Si existe, dejar el contador en 1
+    visitCount = 1;
+}
 
-        // Verificar si es la primera visita
-        if (contador == null) {
-            contador = 1;
-        } else {
-            contador++;
-        }
+// Enviar el contador al servidor a través de una solicitud AJAX
+// Aquí puedes usar una biblioteca como jQuery o Fetch API para la solicitud AJAX
+// Ejemplo con Fetch API:
+fetch('CountServlet?visitCount=' + visitCount)
+    .then(response => response.text())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
 
-        // Establecer el nuevo valor de contador en la sesión
-        countSession.setAttribute("contador", contador);
-%>
+// Almacenar el contador localmente para futuras visitas
+localStorage.setItem('visitCount', visitCount);
+    
+</script>
 
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
   <!-- PRE LOADER -->

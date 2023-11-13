@@ -21,6 +21,7 @@ persistence\exceptions\NonexistentEntityException.class
 persistence\ScheduleJpaController.class
 servlets\LoginServlet.class
 servlets\DeletePatientServlet.class
+servlets\CountServlet.class
 servlets\DeleteAppointmentServlet.class
 servlets\ViewPendingAppointmentServlet.class
 model\ToothAppointment_.class

@@ -84,7 +84,10 @@ public class DashboardServlet extends HttpServlet {
         }
         int totalPendingAppointments = pendingAppointmentList.size();
         
+        
+        
         HttpSession mySession = request.getSession();
+               
         mySession.setAttribute("firstDentalIssue", firstDentalIssue);
         mySession.setAttribute("secondDentalIssue", secondDentalIssue);
         mySession.setAttribute("thirdDentalIssue", thirdDentalIssue);
