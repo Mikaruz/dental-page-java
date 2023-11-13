@@ -15,7 +15,7 @@ const pieConfig = {
         label: 'Dataset 1',
       },
     ],
-    labels: ['Shoes', 'Shirts', 'Bags'],
+    labels: ['Odontologia general', 'Endodoncia', 'Cirugia bucomaxifacial'],
   },
   options: {
     responsive: true,

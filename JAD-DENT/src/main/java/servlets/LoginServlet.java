@@ -88,7 +88,7 @@ public class LoginServlet extends HttpServlet {
                 mySession.setAttribute("user", name);
                 mySession.setAttribute("userId", userId);
 
-                response.sendRedirect("index.jsp"); 
+                response.sendRedirect("DashboardServlet"); 
             } else {
                 // Las credenciales son incorrectas, muestra un mensaje de error
                 request.setAttribute("mensajeError", "Credenciales incorrectas");

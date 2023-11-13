@@ -16,6 +16,7 @@ model\Appointment.class
 model\UserAdmin_.class
 model\Administrator_.class
 servlets\LoginPatientServlet.class
+servlets\DashboardServlet.class
 persistence\exceptions\NonexistentEntityException.class
 persistence\ScheduleJpaController.class
 servlets\LoginServlet.class

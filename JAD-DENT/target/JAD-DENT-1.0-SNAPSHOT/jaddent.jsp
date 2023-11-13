@@ -21,6 +21,23 @@
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="css/tooplate-style.css" />
 </head>
+<%
+      // Obtener la sesión de usuario
+        HttpSession countSession = request.getSession(true);
+
+        // Incrementar el contador en cada visita
+        Integer contador = (Integer) countSession.getAttribute("contador");
+
+        // Verificar si es la primera visita
+        if (contador == null) {
+            contador = 1;
+        } else {
+            contador++;
+        }
+
+        // Establecer el nuevo valor de contador en la sesión
+        countSession.setAttribute("contador", contador);
+%>
 
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
   <!-- PRE LOADER -->
