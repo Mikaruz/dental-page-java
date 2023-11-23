@@ -54,6 +54,10 @@ public class ControllerPersistence {
         return dentistJpa.findDentistEntities();
     }
     
+    public List<ToothAppointment> getToothAppointmentList(){
+        return toothAppointmentJpa.findToothAppointmentEntities();
+    }
+    
     public List<Patient> getPatientList(){
         return patientJpa.findPatientEntities();
     }

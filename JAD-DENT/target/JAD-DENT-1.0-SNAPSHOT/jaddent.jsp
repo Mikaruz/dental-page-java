@@ -1,27 +1,7 @@
 <%@page import="java.util.Optional"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <title>JAD-DENT</title>
-
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-  <meta name="description" content="" />
-  <meta name="keywords" content="" />
-  <meta name="author" content="Tooplate" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-  <link rel="icon" href="assets/img/icon.ico">
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-  <link rel="stylesheet" href="css/font-awesome.min.css" />
-  <link rel="stylesheet" href="css/animate.css" />
-  <link rel="stylesheet" href="css/owl.carousel.css" />
-  <link rel="stylesheet" href="css/owl.theme.default.min.css" />
-
-  <!-- MAIN CSS -->
-  <link rel="stylesheet" href="css/tooplate-style.css" />
-</head>
+<html lang="es">
 <script>
 // Obtener el contador almacenado localmente
 let visitCount = localStorage.getItem('visitCount');
@@ -47,16 +27,52 @@ fetch('CountServlet?visitCount=' + visitCount)
 localStorage.setItem('visitCount', visitCount);
     
 </script>
+<script>
+          window.addEventListener('mouseover', initLandbot, { once: true });
+          window.addEventListener('touchstart', initLandbot, { once: true });
+          var myLandbot;
+      
+          function initLandbot() {
+              if (!myLandbot) {
+                  var s = document.createElement('script');
+                  s.type = 'text/javascript';
+                  s.async = true;
+                  s.addEventListener('load', function () {
+                      var myLandbot = new Landbot.Livechat({
+                          configUrl: 'https://storage.googleapis.com/landbot.online/v3/H-1785913-36YV4I87H6NWIZB4/index.json',
+                      });
+                  });
+                  s.src = 'https://cdn.landbot.io/landbot-3/landbot-3.0.0.js';
+                  var x = document.getElementsByTagName('script')[0];
+                  x.parentNode.insertBefore(s, x);
+              }
+          }
+      </script>
+<head>
+  <title>JAD-DENT</title>
+
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <meta name="description" content="" />
+  <meta name="keywords" content="" />
+  <meta name="author" content="Tooplate" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link rel="icon" href="assets/img/icon.ico">
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/font-awesome.min.css" />
+  <link rel="stylesheet" href="css/animate.css" />
+  <link rel="stylesheet" href="css/owl.carousel.css" />
+  <link rel="stylesheet" href="css/owl.theme.default.min.css" />
+  <link rel="stylesheet" type="text/css" id="theme-stylesheet" href="light-theme.css"/>
+  <link rel="stylesheet" href="css/tooplate-style.css" />
+</head>
 
 <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-  <!-- PRE LOADER -->
   <section class="preloader">
     <div class="spinner">
       <span class="spinner-rotate"></span>
     </div>
   </section>
-
-  <!-- HEADER -->
   <header>
     <div class="container">
       <div class="row">
@@ -70,6 +86,8 @@ localStorage.setItem('visitCount', visitCount);
             (Lunes-Viernes)</span>
           <span class="email-icon"><i class="fa fa-envelope-o"></i>
             <a href="#">carlosvelag21@gmail.com</a></span>
+
+
         </div>
       </div>
     </div>
@@ -86,7 +104,7 @@ localStorage.setItem('visitCount', visitCount);
         </button>
 
         <!-- lOGO TEXT HERE -->
-        <a href="index.html" class="navbar-brand">JAD-DENT</a>
+        <a href="index.html" class="navbar-brand"></i>JAD-DENT</a>
       </div>
 
       <!-- MENU LINKS -->
@@ -96,7 +114,7 @@ localStorage.setItem('visitCount', visitCount);
           <li><a href="#about" class="smoothScroll">Nosotros </a></li>
           <li><a href="#team" class="smoothScroll">Nuestros doctores</a></li>
           <li><a href="#news" class="smoothScroll">Novedades</a></li>
-          <li><a href="#google-map" class="smoothScroll">Contáctanos</a></li>
+          <li><a href="#google-map" class="smoothScroll">Contactanos</a></li>
           <li class="appointment-btn">
             <a href="#appointment">Reservar una cita</a>
           </li>
@@ -323,8 +341,7 @@ localStorage.setItem('visitCount', visitCount);
               </h3>
               <p>
                 Es importante que el cuidado de dientes y encías comience desde la niñez. La nutrición, para tener una
-                boca sana deben incluir en su dieta fuentes de proteínas, vitaminas C y D, calcio, fósforo y
-                flúor.
+                boca sana deben incluir en su dieta fuentes de proteínas.
               </p>
               <div class="author">
                 <img src="images/Jesus-alberto (2).jpeg" class="img-responsive" alt="" />
@@ -349,7 +366,7 @@ localStorage.setItem('visitCount', visitCount);
               <p>
                 Las visitas dentales regulares son importantes porque le permiten al dentista: Detectar caries
                 tempranamente. El dentista revisa tus dientes para encontrar caries mientras estas aún son pequeñas.
-                Cuanto antes las detectes, menos costoso será el tratamiento que necesites.
+
               </p>
               <div class="author">
                 <img src="images/jesusodont.jpeg" class="img-responsive" alt="" />
@@ -370,12 +387,12 @@ localStorage.setItem('visitCount', visitCount);
     <div class="container">
       <div class="row">
         <div class="col-md-6 col-sm-6">
-          <img src="images/appointment-image.jpg" class="img-responsive" alt="" />
+          <img src="images/cita-removebg-preview.png" class="img-responsive" alt="" />
         </div>
-        <form action="CreatePendingAppointmentServlet" method="POST">
+
         <div class="col-md-6 col-sm-6">
           <!-- CONTACT FORM HERE -->
-          
+           <form action="CreatePendingAppointmentServlet" method="POST">
             <!-- SECTION TITLE -->
             <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
               <h2>Reservar una cita</h2>
@@ -426,7 +443,7 @@ localStorage.setItem('visitCount', visitCount);
                 <textarea class="form-control" rows="5" id="reason" name="reason"
                   placeholder="Algún dato adicional..."></textarea>
                 <button type="submit" class="form-control" id="cf-submit" name="submit">
-                  Enviar consulta
+                  Enviar
                 </button>
               </div>
             </div>
@@ -436,6 +453,8 @@ localStorage.setItem('visitCount', visitCount);
     </div>
   </section>
 
+  <br>
+  <br>
   <!-- GOOGLE MAP -->
   <section id="google-map">
     <!-- How to change your own map point
@@ -479,25 +498,25 @@ localStorage.setItem('visitCount', visitCount);
             <h4 class="wow fadeInUp" data-wow-delay="0.4s">Últimas novedades</h4>
             <div class="latest-stories">
               <div class="stories-image">
-                <a href="#"><img src="images/news-image.jpg" class="img-responsive" alt="" /></a>
+                <a href="#"><img src="images/cepillo.jpeg" class="img-responsive" alt="" /></a>
               </div>
               <div class="stories-info">
-                <a href="#">
-                  <h5>Limpieza de dientes y encías</h5>
+                <a href="https://tottus.falabella.com.pe/tottus-pe/product/116396367/cepillo-den-elect-oral-b-power-precs-clean-1und/116396368">
+                  <h5> Tecnología Oral-B </h5>
                 </a>
-                
+                <span>20 de noviembre del 2023 </span>
               </div>
             </div>
 
             <div class="latest-stories">
               <div class="stories-image">
-                <a href="#"><img src="images/news-image.jpg" class="img-responsive" alt="" /></a>
+                <a href="#"><img src="images/cadadm.jpg" class="img-responsive" alt="" /></a>
               </div>
               <div class="stories-info">
-                <a href="#">
-                  <h5>Visítanos cada 6 meses</h5>
+                <a href="https://dentalmedicalgroup.com/es/2017/04/10/sistema-cadcam-dental-una-tecnica-diferenciada/">
+                  <h5>El sistema CAD/CAM </h5>
                 </a>
-                
+                <span>16 de abril del 2016</span>
               </div>
             </div>
           </div>
@@ -511,37 +530,17 @@ localStorage.setItem('visitCount', visitCount);
               </h4>
               <p>Lunes - Viernes <span>06:00 AM - 10:00 PM</span></p>
               <p>Sábados <span>09:00 AM - 08:00 PM</span></p>
-              <p>Domingos y feriados <span>Cerrado</span></p>
+              <p>Domingos y feriados <span>Closed</span></p>
             </div>
 
             <ul class="social-icon">
               <li>
-                <a href="https://www.facebook.com/tooplate" class="fa fa-facebook-square" attr="facebook icon"></a>
+                <a href="https://www.facebook.com/jad.dentconsultoriolaboratorio" class="fa fa-facebook-square" attr="facebook icon"></a>
               </li>
-              <li><a href="#" class="fa fa-twitter"></a></li>
-              <li><a href="#" class="fa fa-instagram"></a></li>
+              <li><a href="https://www.instagram.com/jad.dent_/" class="fa fa-instagram"></a></li>
             </ul>
           </div>
         </div>
-
-        <div class="col-md-12 col-sm-12 border-top">
-          <div class="col-md-4 col-sm-6">
-            <div class="copyright-text">
-              <p>
-                Copyright &copy; 2023 Jad-Dent
-              </p>
-            </div>
-           
-          </div>
-         
-          <div class="col-md-2 col-sm-2 text-align-center">
-            <div class="angle-up-btn">
-              <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </footer>
 
   <!-- SCRIPTS -->

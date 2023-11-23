@@ -155,6 +155,12 @@ public class Controller {
         return controllerPersistence.getDentistList();
     }
     
+    public List<ToothAppointment> getToothAppointmentList(){
+        controllerPersistence.getToothAppointmentList();
+        
+        return controllerPersistence.getToothAppointmentList();
+    }
+    
     public List<Administrator> getAdministratorList(){
         return controllerPersistence.getAdministratorList();
     }

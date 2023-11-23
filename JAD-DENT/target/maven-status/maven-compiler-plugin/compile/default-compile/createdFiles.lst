@@ -53,5 +53,6 @@ model\exceptions\NonexistentEntityException.class
 model\PendingAppointment_.class
 servlets\CreateNewPatientAppointmentServlet.class
 servlets\EditDentistServlet.class
+servlets\PatientAppointmentServlet.class
 model\Controller.class
 model\exceptions\IllegalOrphanException.class

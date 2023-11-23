@@ -2,7 +2,13 @@
 
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> <%String currentPage =
-"appointment";%>
+"appointment";
+
+ List<Appointment> appointmentPatientList = (List) request.getSession().getAttribute("appointmentPatientList");
+    Appointment lastAppointment = (Appointment) request.getSession().getAttribute("lastAppointment");
+
+%>
+
 
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
@@ -100,6 +106,7 @@
       
                             <th class="px-4 py-3">Dia</th>
                             <th class="px-4 py-3">Hora</th>
+                           <th class="px-4 py-3">Detalles</th>
                            
                            
                           </tr>
@@ -145,7 +152,35 @@
                               </span>
                             </td>
                             <td class="px-4 py-3 text-sm"><%=appointment.getTurnTime()%></td>
-                            
+
+
+                            <td class="px-4 py-3">
+                        <div class="flex items-center space-x-4 text-sm">
+                          <form name="view" action="PatientAppointmentServlet" method="GET">
+                            <button
+                              class="flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 text-purple-600 rounded-lg dark:text-gray-400 focus:outline-none focus:shadow-outline-gray"
+                              aria-label="Edit"
+                            >
+                             <svg
+            class="w-5 h-5"
+            aria-hidden="true"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+            ></path>
+          </svg>
+                            </button>
+                            <input type="hidden" name="appointmentId" value="<%=appointment.getAppointmentId()%>">
+                          </form>
+                          
+                        </div>
+                      </td>
                             
                           </tr>
                           <% } %>

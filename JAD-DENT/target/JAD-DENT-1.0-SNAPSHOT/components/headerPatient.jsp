@@ -5,15 +5,11 @@
 <%@page import="model.Patient"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%HttpSession mySession = request.getSession();
-Controller controller = new Controller();
+
   String name = (String) request.getSession().getAttribute("patient");
-    int patientId = (int) request.getSession().getAttribute("patientId");
-    int userId = (int) request.getSession().getAttribute("userId");
+     int userId = (int) request.getSession().getAttribute("userId");
     
-    Patient patient = controller.getPatient(patientId);
-    
-    List<Appointment> appointmentPatientList = (List) request.getSession().getAttribute("appointmentPatientList");
-    Appointment lastAppointment = (Appointment) request.getSession().getAttribute("lastAppointment");
+   
     
   if(name == null){
         response.sendRedirect("loginPatient.jsp");

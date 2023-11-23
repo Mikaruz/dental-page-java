@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collections;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -102,7 +103,7 @@ public class LoginPatientServlet extends HttpServlet {
                 }
                 
                 
-                
+                Collections.reverse(appointmentPatientList);
                  
                 
                 // El inicio de sesión es exitoso, la contraseña es válida
@@ -115,7 +116,7 @@ public class LoginPatientServlet extends HttpServlet {
                 mySession.setAttribute("appointmentPatientList", appointmentPatientList);
                 mySession.setAttribute("lastAppointment", lastAppointment);
                 
-                response.sendRedirect("dashboardPatient.jsp"); 
+                response.sendRedirect("viewPatient.jsp"); 
             } else {
                 // Las credenciales son incorrectas, muestra un mensaje de error
                 request.setAttribute("mensajeError", "Credenciales incorrectas");

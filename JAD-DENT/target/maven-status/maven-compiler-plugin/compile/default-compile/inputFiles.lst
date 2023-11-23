@@ -15,6 +15,7 @@ C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\exceptions\
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\EditDentistServlet.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\PaidAppointmentServlet.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\EditPatientServlet.java
+C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\servlets\PatientAppointmentServlet.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\AppointmentJpaController.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\persistence\ScheduleJpaController.java
 C:\Projects\Java\dental-page-java\JAD-DENT\src\main\java\model\exceptions\PreexistingEntityException.java

@@ -1,6 +1,13 @@
 <%@page import="model.Patient"%>
+<%@page import="model.Controller"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%> <%String currentPage =
-"patient";%>
+"patient";
+Controller controller = new Controller();
+int patientId = (int) request.getSession().getAttribute("patientId");
+    
+    Patient patient = controller.getPatient(patientId);
+
+%>
 <!DOCTYPE html>
 <html :class="{ 'theme-dark': dark }" x-data="data()" lang="en">
   <%@include file="components/head.jsp"%>

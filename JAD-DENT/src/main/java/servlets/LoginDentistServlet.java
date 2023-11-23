@@ -3,6 +3,7 @@ package servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.util.Collections;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,7 +104,7 @@ public class LoginDentistServlet extends HttpServlet {
                    
                 }
                 
-                
+                Collections.reverse(appointmentDentistList);
                 // El inicio de sesión es exitoso, la contraseña es válida
                 // Puedes establecer una sesión o redireccionar al usuario a la página de inicio
                 HttpSession mySession = request.getSession();
@@ -114,7 +115,7 @@ public class LoginDentistServlet extends HttpServlet {
                 mySession.setAttribute("appointmentDentistList", appointmentDentistList);
                 
                 
-                response.sendRedirect("dashboardDentist.jsp"); 
+                response.sendRedirect("viewDentist.jsp"); 
             } else {
                 // Las credenciales son incorrectas, muestra un mensaje de error
                 request.setAttribute("mensajeError", "Credenciales incorrectas");
